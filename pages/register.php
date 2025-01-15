@@ -30,10 +30,10 @@
                 <p class="text-center text-lg font-medium">Sign up for your account</p>
 
                 <div>
-                    <label for="name" class="sr-only">Name</label>
+                    <label for="username" class="sr-only">Username</label>
 
                     <div class="relative">
-                        <input type="text" name="name" class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
+                        <input type="text" name="username" class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
                             placeholder="Enter name" />
 
                         <span class="absolute inset-y-0 end-0 grid place-content-center px-4">

@@ -2,7 +2,7 @@
 
 interface Authentication
 {
-    public function register(PDO $db, $userName, $password, $comfirmPassword);
+    public function register(PDO $db, $userName, $password, $comfirmPassword, $role = 'Student');
     
     public function login(PDO $db, $password);
 
