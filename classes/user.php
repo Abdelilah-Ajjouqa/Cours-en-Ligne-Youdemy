@@ -10,24 +10,6 @@ class User implements Authentication
         $this->db = $db;
     }
 
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    public function getAllCours(PDO $db)
-    {
-        $query = "SELECT * FROM courses";
-        $stmt = $db->query($query);
-        $courses = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return $courses;
-    }
-
-    public function getCourseDetails()
-    {
-
-    }
-
     public function register(PDO $db, $userName, $password, $comfirmPassword, $role = 'Student')
     {
         try{
@@ -68,6 +50,24 @@ class User implements Authentication
         } catch(PDOException $e){
             echo 'Error : '. $e->getMessage();
         }
+    }
+
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    public function getAllCours(PDO $db)
+    {
+        $query = "SELECT * FROM courses";
+        $stmt = $db->query($query);
+        $courses = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $courses;
+    }
+
+    public function getCourseDetails()
+    {
+
     }
 
     public function login(PDO $db, $password)
