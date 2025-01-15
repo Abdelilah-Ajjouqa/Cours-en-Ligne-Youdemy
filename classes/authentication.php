@@ -14,5 +14,5 @@ interface Authentication
 
     public function isTeacher();
 
-    public function usStudent();
+    public function isStudent();
 }
