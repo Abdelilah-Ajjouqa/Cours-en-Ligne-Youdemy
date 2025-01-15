@@ -14,15 +14,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $confirmPassword = $_POST['confirmPassword'];
         $role = 'user';
         
-        $auth = new User($email, $db);
-        $result = $auth->register($username, $email, $password, $confirmPassword, $role);
+        $auth = new User($email, $conn);
+        $result = $auth->register($conn, $username, $email, $password, $confirmPassword, $role);
         
         if ($result === true) {
             header('location: ../pages/login.php');
-            echo 'connect true';
+            // echo 'connect true';
             exit();
         } else {
-            echo "<script>alert('$result');</script>";
+            // echo "<script>alert('$result');</script>";
+            echo $result;
         }
     }
 }
