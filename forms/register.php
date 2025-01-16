@@ -13,10 +13,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $password = $_POST['password'];
         $confirmPassword = $_POST['confirmPassword'];
         $role = $_POST['role'];
-        
+
         $auth = new User($email, $conn);
         $result = $auth->register($conn, $username, $password, $confirmPassword, $role);
-        
+
         if ($result === true) {
             header('location: ../pages/login.php');
             exit();

@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         $auth = new User($email, $conn);
         $result = $auth->login($conn, $password);
 
-        if ($result == true){
+        if ($result){
             header('location: ../pages/courses.php');
             exit();
         } else {
