@@ -4,12 +4,12 @@ require 'authentication.php';
 class User implements Authentication
 {
     protected $email;
-    private $db;
+    // private $db;
 
     public function __construct($email, PDO $db)
     {
         $this->email = $email;
-        $this->db = $db;
+        // $this->db = $db;
     }
 
     public function register(PDO $db, $username, $password, $confirmPassword, $role = 'Student')
