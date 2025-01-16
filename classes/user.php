@@ -56,6 +56,29 @@ class User implements Authentication
         }
     }
 
+    public function login(PDO $db, $password)
+    {
+        try{
+            $query = 'SELECT * FROM users WHERE email = :email';
+            $stmt = $db->prepare($query);
+            $stmt->bindParam(':email', $this->email);
+            $stmt->execute();
+
+            $logInfo = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if(!$logInfo || !password_verify($password, $logInfo['password'])){
+                return "Invalide Pssword or Email";
+            }
+            $_SESSION['username'] = $logInfo['username'];
+            $_SESSION['email'] = $logInfo['email'];
+            $_SESSION['role'] = $logInfo['role'];
+
+            return true;
+        } catch(PDOException $e){
+            echo 'Error : '. $e->getMessage();
+        }
+    }
+
     public function getEmail()
     {
         return $this->email;
@@ -70,11 +93,6 @@ class User implements Authentication
     }
 
     public function getCourseDetails()
-    {
-
-    }
-
-    public function login(PDO $db, $password)
     {
 
     }
