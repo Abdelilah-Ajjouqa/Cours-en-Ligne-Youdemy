@@ -12,17 +12,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $email = $_POST['email'];
         $password = $_POST['password'];
         $confirmPassword = $_POST['confirmPassword'];
-        $role = 'user';
+        $role = $_POST['role'];
         
         $auth = new User($email, $conn);
-        $result = $auth->register($conn, $username, $email, $password, $confirmPassword, $role);
+        $result = $auth->register($conn, $username, $password, $confirmPassword, $role);
         
         if ($result === true) {
             header('location: ../pages/login.php');
-            // echo 'connect true';
             exit();
         } else {
-            // echo "<script>alert('$result');</script>";
             echo $result;
         }
     }

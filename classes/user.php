@@ -25,15 +25,19 @@ class User implements Authentication
                 return "This email already exists";
             }
 
+            if ($password !== $confirmPassword) {
+                return "Passwords do not match";
+            }
+
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
             // Insert Data
-            $query = 'INSERT INTO users (username, email, password) VALUES (:username, :email, :password)';
+            $query = 'INSERT INTO users (username, email, password, role) VALUES (:username, :email, :password, :role)';
             $stmt = $db->prepare($query);
             $stmt->bindParam(':username', $username);
             $stmt->bindParam(':email', $this->email);
             $stmt->bindParam(':password', $hashedPassword);
-            // $stmt->bindParam(':role', $role);
+            $stmt->bindParam(':role', $role);
             $stmt->execute();
 
             $userId = $db->lastInsertId();
@@ -44,6 +48,7 @@ class User implements Authentication
                 $_SESSION['email'] = $this->email;
                 $_SESSION['role'] = $role;
             }
+
             return true;
 
         } catch (PDOException $e) {
