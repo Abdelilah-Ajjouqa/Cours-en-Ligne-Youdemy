@@ -1,28 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Youdemy | Register</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
+
 <body>
     <!-- navbar -->
     <div class="navbar flex justify-between bg-white shadow-md p-4">
-            <div class="flex-1">
-                <a class="text-2xl font-bold text-indigo-600" href="#">B.Post</a>
-            </div>
-            <div class="flex-none">
-                <ul class="flex space-x-4">
-                    <li><a class="text-gray-700 hover:text-indigo-600" href="#">Home</a></li>
-                    <li><a class="text-gray-700 hover:text-indigo-600" href="#">Blog</a></li>
-                    <li><a class="text-gray-700 hover:text-indigo-600" href="#">Contact</a></li>
-                </ul>
-            </div>
+        <div class="flex-1">
+            <a class="text-2xl font-bold text-indigo-600" href="#">B.Post</a>
         </div>
+        <div class="flex-none">
+            <ul class="flex space-x-4">
+                <li><a class="text-gray-700 hover:text-indigo-600" href="#">Home</a></li>
+                <li><a class="text-gray-700 hover:text-indigo-600" href="#">Blog</a></li>
+                <li><a class="text-gray-700 hover:text-indigo-600" href="#">Contact</a></li>
+            </ul>
+        </div>
+    </div>
 
-        <!-- main page -->
-        <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
+    <!-- main page -->
+    <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
         <div class="mx-auto max-w-lg">
             <h1 class="text-center text-2xl font-bold text-indigo-600 sm:text-3xl">Create your account</h1>
 
@@ -101,6 +103,29 @@
                     </div>
                 </div>
 
+                <div
+                    class="flex space-x-2 border-[3px] border-indigo-500 rounded-xl select-none">
+                    <label
+                        class="radio flex flex-grow items-center justify-center rounded-lg p-1 cursor-pointer">
+                        <input
+                            type="radio"
+                            name="role"
+                            value="student"
+                            class="peer hidden"
+                            checked="" />
+                        <span
+                            class="tracking-widest peer-checked:bg-gradient-to-r peer-checked:from-indigo-500 peer-checked:to-indigo-700 peer-checked:text-white text-gray-700 p-2 rounded-lg transition duration-150 ease-in-out">Student</span>
+                    </label>
+
+                    <label
+                        class="radio flex flex-grow items-center justify-center rounded-lg p-1 cursor-pointer">
+                        <input type="radio" name="role" value="teacher" class="peer hidden" />
+                        <span
+                            class="tracking-widest peer-checked:bg-gradient-to-r peer-checked:from-indigo-500 peer-checked:to-indigo-700 peer-checked:text-white text-gray-700 p-2 rounded-lg transition duration-150 ease-in-out">Teacher</span>
+                    </label>
+                </div>
+
+
                 <button type="submit"
                     class="block w-full rounded-lg bg-indigo-600 px-5 py-3 text-sm font-medium text-white">
                     Sign up
@@ -127,4 +152,5 @@
         });
     </script>
 </body>
+
 </html>
