@@ -100,7 +100,9 @@ class User implements Authentication
 
     public function logout()
     {
-        
+        session_unset();
+        session_destroy();
+        return true;
     }
 
     public function isLoggedIn()

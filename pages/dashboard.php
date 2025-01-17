@@ -9,8 +9,8 @@ $conn = $data->getConnection();
 $result = $conn->query("SELECT * FROM courses");
 $userNameResult = $conn->query("SELECT username FROM users");
 
-if ($userNameResult && $userNameResult->num_rows > 0) {
-    $userNameRow = $userNameResult->fetch_assoc();
+if ($userNameResult && $userNameResult->rowCount() > 0) {
+    $userNameRow = $userNameResult->fetch(PDO::FETCH_ASSOC);
     $userName = $userNameRow['username'];
 }
 ?>
@@ -53,6 +53,9 @@ if ($userNameResult && $userNameResult->num_rows > 0) {
             </div>
         </div>
 
+        <div>
+            
+        </div>
 
     <article class="overflow-hidden rounded-lg shadow transition hover:shadow-lg w-1/3">
         <img alt=""
