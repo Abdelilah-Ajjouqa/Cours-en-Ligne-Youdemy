@@ -15,10 +15,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         $result = $auth->login($conn, $password);
 
         if ($result){
-            header('location: ../pages/courses.php');
+            header('location: ../pages/dashboard.php');
             exit();
         } else {
-            echo $result;
+            echo "Invalid email or password";
         }
     }
 }
