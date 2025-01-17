@@ -4,12 +4,11 @@ require 'authentication.php';
 class User implements Authentication
 {
     protected $email;
-    // private $db;
+    private $name;
 
-    public function __construct($email, PDO $db)
+    public function __construct($email)
     {
         $this->email = $email;
-        // $this->db = $db;
     }
 
     public function register(PDO $db, $username, $password, $confirmPassword, $role = 'Student')
@@ -48,6 +47,7 @@ class User implements Authentication
                 $_SESSION['email'] = $this->email;
                 $_SESSION['role'] = $role;
             }
+            $this->name = $username;
 
             return true;
 
@@ -78,6 +78,10 @@ class User implements Authentication
         } catch (PDOException $e) {
             return 'Error: ' . $e->getMessage();
         }
+    }
+
+    public function getName(){
+        return $this->name;
     }
 
     public function getEmail()

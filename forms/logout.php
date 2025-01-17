@@ -6,5 +6,8 @@ if (!isset($_SESSION['email'])){
     header("location : ../pages/login.php");
     exit();
 } else {
-    $user = new User();
+    $user = new User($_SESSION['email'], $db);
+    $user->logout();
+    header('location: ../pages/dashboard.php');
+    exit();
 }

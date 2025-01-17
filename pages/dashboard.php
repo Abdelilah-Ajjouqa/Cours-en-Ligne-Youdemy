@@ -6,13 +6,8 @@ require '../classes/user.php';
 $data = new Database;
 $conn = $data->getConnection();
 
-$result = $conn->query("SELECT * FROM courses");
-$userNameResult = $conn->query("SELECT username FROM users");
-
-if ($userNameResult && $userNameResult->rowCount() > 0) {
-    $userNameRow = $userNameResult->fetch(PDO::FETCH_ASSOC);
-    $userName = $userNameRow['username'];
-}
+$user = new User($email);
+$name = $user->getName();
 ?>
 
 <!DOCTYPE html>
@@ -40,7 +35,7 @@ if ($userNameResult && $userNameResult->rowCount() > 0) {
                         <details class="relative">
                             <summary class="hover:underline text-red-600 cursor-pointer hover:text-indigo-600" style="list-style: none;">
                             <?php
-                            $userName;
+                            $name;
                             ?>
                             </summary>
                             <ul class="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg">
