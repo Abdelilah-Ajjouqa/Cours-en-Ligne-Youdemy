@@ -6,7 +6,7 @@ require '../classes/user.php';
 $data = new Database;
 $conn = $data->getConnection();
 
-$user = new User($email);
+$user = new User($conn);
 $name = $user->getName();
 ?>
 
@@ -35,7 +35,7 @@ $name = $user->getName();
                         <details class="relative">
                             <summary class="hover:underline text-red-600 cursor-pointer hover:text-indigo-600" style="list-style: none;">
                             <?php
-                            $name;
+                            echo $name;
                             ?>
                             </summary>
                             <ul class="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg">
