@@ -67,12 +67,11 @@ class User implements Authentication
             $logInfo = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if (!$logInfo || !password_verify($password, $logInfo['password'])) {
-                return "Invalid Password or Email";
+                return false;
             } else {
                 $_SESSION['username'] = $logInfo['username'];
                 $_SESSION['email'] = $logInfo['email'];
                 $_SESSION['role'] = $logInfo['role'];
-
                 return true;
             }
         } catch (PDOException $e) {
