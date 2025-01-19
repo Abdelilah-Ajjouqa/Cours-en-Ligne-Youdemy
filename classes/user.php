@@ -47,7 +47,6 @@ class User implements Authentication
                 $_SESSION['email'] = $this->email;
                 $_SESSION['role'] = $role;
             }
-            // $this->name = $username;
 
             return true;
 
