@@ -6,8 +6,8 @@ require '../classes/user.php';
 $data = new Database;
 $conn = $data->getConnection();
 
-$user = new User($conn);
-$name = $user->getName();
+$user = new User($_SESSION['email']);
+$username = $user->getName();
 ?>
 
 <!DOCTYPE html>
@@ -35,21 +35,21 @@ $name = $user->getName();
                         <details class="relative">
                             <summary class="hover:underline text-red-600 cursor-pointer hover:text-indigo-600" style="list-style: none;">
                             <?php
-                            echo $name;
+                            echo $username;
                             ?>
                             </summary>
                             <ul class="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg">
                                 <li><a class="block px-4 py-2 text-gray-700 hover:bg-indigo-600 hover:text-white" href="#">Edit</a></li>
-                                <li><a class="block px-4 py-2 text-gray-700 hover:bg-indigo-600 hover:text-white" href="#">Log-out</a></li>
+                                <li><a class="block px-4 py-2 text-gray-700 hover:bg-indigo-600 hover:text-white" href="#">
+                                    <form action="../forms/logout.php" method="post">
+                                        <input type="submit" value="Logout" class="block w-full text-left">
+                                    </form>
+                                </a></li>
                             </ul>
                         </details>
                     </li>
                 </ul>
             </div>
-        </div>
-
-        <div>
-            
         </div>
 
     <article class="overflow-hidden rounded-lg shadow transition hover:shadow-lg w-1/3">

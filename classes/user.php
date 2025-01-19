@@ -4,7 +4,7 @@ require 'authentication.php';
 class User implements Authentication
 {
     protected $email;
-    private $name;
+    protected $name;
 
     public function __construct($email)
     {
@@ -47,7 +47,7 @@ class User implements Authentication
                 $_SESSION['email'] = $this->email;
                 $_SESSION['role'] = $role;
             }
-            $this->name = $username;
+            // $this->name = $username;
 
             return true;
 
@@ -67,6 +67,7 @@ class User implements Authentication
             $logInfo = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if (!$logInfo || !password_verify($password, $logInfo['password'])) {
+                header ('location: ../pages/login.php');
                 return false;
             } else {
                 $_SESSION['username'] = $logInfo['username'];
@@ -80,7 +81,7 @@ class User implements Authentication
     }
 
     public function getName(){
-        return $this->name;
+        return $this->name = $_SESSION['username'];
     }
 
     public function getEmail()
