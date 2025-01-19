@@ -67,7 +67,7 @@ class User implements Authentication
             $logInfo = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if (!$logInfo || !password_verify($password, $logInfo['password'])) {
-                header ('location: ../pages/login.php');
+                header ('location: ../pages/login.hmtl');
                 return false;
             } else {
                 $_SESSION['username'] = $logInfo['username'];

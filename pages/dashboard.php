@@ -6,8 +6,13 @@ require '../classes/user.php';
 $data = new Database;
 $conn = $data->getConnection();
 
-$user = new User($_SESSION['email']);
-$username = $user->getName();
+if (!isset($_SESSION['email'])) {
+    header("location: ./login.html");
+    exit();
+} else {
+    $user = new User($_SESSION['email']);
+    $username = $user->getName();
+}
 ?>
 
 <!DOCTYPE html>
