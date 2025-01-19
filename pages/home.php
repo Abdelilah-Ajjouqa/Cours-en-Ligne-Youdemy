@@ -44,8 +44,11 @@ if (!isset($_SESSION['email'])) {
                                 ?>
                             </summary>
                             <ul class="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg">
-                                <li><a class="block px-4 py-2 text-gray-700 hover:bg-indigo-600 hover:text-white" href="#">Edit</a></li>
-                                <li><a class="block px-4 py-2 text-gray-700 hover:bg-indigo-600 hover:text-white" href="#">
+                                <li>
+                                    <a class="block px-4 py-2 text-gray-700 hover:bg-indigo-600 hover:text-white" href="./edit.php">Edit</a>
+                                </li>
+                                <li>
+                                    <a class="block px-4 py-2 text-gray-700 hover:bg-indigo-600 hover:text-white" href="#">
                                         <form action="../forms/logout.php" method="post">
                                             <input type="submit" value="Logout" class="block w-full text-left">
                                         </form>

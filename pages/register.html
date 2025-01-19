@@ -8,19 +8,13 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body>
+<body class="bg-blue-50">
     <!-- navbar -->
     <div class="navbar flex justify-between bg-white shadow-md p-4">
         <div class="flex-1">
-            <a class="text-2xl font-bold text-indigo-600" href="#">B.Post</a>
+            <a class="text-2xl font-bold text-indigo-600 hover:text-2xl duration-300" href="./home.php"><i class="text-red-500">You</i>demy</a>
         </div>
-        <div class="flex-none">
-            <ul class="flex space-x-4">
-                <li><a class="text-gray-700 hover:text-indigo-600" href="#">Home</a></li>
-                <li><a class="text-gray-700 hover:text-indigo-600" href="#">Blog</a></li>
-                <li><a class="text-gray-700 hover:text-indigo-600" href="#">Contact</a></li>
-            </ul>
-        </div>
+        
     </div>
 
     <!-- main page -->
@@ -28,15 +22,47 @@
         <div class="mx-auto max-w-lg">
             <h1 class="text-center text-2xl font-bold text-indigo-600 sm:text-3xl">Create your account</h1>
 
-            <form method="post" action="../forms/register.php" class="mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8">
+            <form method="post" action="../forms/register.php" class="bg-white mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8">
                 <p class="text-center text-lg font-medium">Sign up for your account</p>
+
+                <div>
+                    <label for="firstname" class="sr-only"></label>
+
+                    <div class="relative">
+                        <input type="text" name="firstname" class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
+                            placeholder="Enter first name" />
+
+                        <span class="absolute inset-y-0 end-0 grid place-content-center px-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4 text-gray-400" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 12h14M12 5l7 7-7 7" />
+                            </svg>
+                        </span>
+                </div><br>
+
+                <div>
+                    <label for="lastname" class="sr-only"></label>
+
+                    <div class="relative">
+                        <input type="text" name="lastname" class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
+                            placeholder="Enter last name" />
+
+                        <span class="absolute inset-y-0 end-0 grid place-content-center px-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4 text-gray-400" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 12h14M12 5l7 7-7 7" />
+                            </svg>
+                        </span>
+                    </div><br>
 
                 <div>
                     <label for="username" class="sr-only">Username</label>
 
                     <div class="relative">
                         <input type="text" name="username" class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
-                            placeholder="Enter name" />
+                            placeholder="Enter an UserName" />
 
                         <span class="absolute inset-y-0 end-0 grid place-content-center px-4">
                             <svg xmlns="http://www.w3.org/2000/svg" class="size-4 text-gray-400" fill="none"
@@ -46,7 +72,7 @@
                             </svg>
                         </span>
                     </div>
-                </div>
+                </div><br>
 
                 <div>
                     <label for="email" class="sr-only">Email</label>
@@ -63,7 +89,7 @@
                             </svg>
                         </span>
                     </div>
-                </div>
+                </div><br>
 
                 <div>
                     <label for="password" class="sr-only">Password</label>
@@ -82,7 +108,7 @@
                             </svg>
                         </span>
                     </div>
-                </div>
+                </div><br>
 
                 <div>
                     <label for="password_confirmation" class="sr-only">Confirm Password</label>
@@ -101,7 +127,7 @@
                             </svg>
                         </span>
                     </div>
-                </div>
+                </div><br>
 
                 <div
                     class="flex space-x-2 border-[3px] border-indigo-500 rounded-xl select-none">
@@ -114,11 +140,11 @@
                         <input type="radio" name="role" value="teacher" class="peer hidden" />
                         <span class="tracking-widest peer-checked:bg-gradient-to-r peer-checked:from-indigo-500 peer-checked:to-indigo-700 peer-checked:text-white text-gray-700 p-2 rounded-lg transition duration-150 ease-in-out">Teacher</span>
                     </label>
-                </div>
+                </div><br>
 
 
                 <button type="submit"
-                    class="block w-full rounded-lg bg-indigo-600 px-5 py-3 text-sm font-medium text-white">
+                    class="block w-[60%] mx-auto rounded-lg bg-indigo-600 px-5 py-3 text-sm font-medium text-white">
                     Sign up
                 </button>
 

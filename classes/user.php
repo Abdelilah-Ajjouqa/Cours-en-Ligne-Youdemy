@@ -11,7 +11,7 @@ class User implements Authentication
         $this->email = $email;
     }
 
-    public function register(PDO $db, $username, $password, $confirmPassword, $role = 'Student')
+    public function register(PDO $db, $firstname, $lastname, $username, $password, $confirmPassword, $role = 'Student')
     {
         try {
             // Check if email already exists
@@ -31,8 +31,10 @@ class User implements Authentication
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
             // Insert Data
-            $query = 'INSERT INTO users (username, email, password, role) VALUES (:username, :email, :password, :role)';
+            $query = 'INSERT INTO users (firstname, lastname, username, email, password, role) VALUES (:firstname, :lastname, :username, :email, :password, :role)';
             $stmt = $db->prepare($query);
+            $stmt->bindParam(':firstname', $firstname);
+            $stmt->bindParam(':lastname', $lastname);
             $stmt->bindParam(':username', $username);
             $stmt->bindParam(':email', $this->email);
             $stmt->bindParam(':password', $hashedPassword);
@@ -43,6 +45,8 @@ class User implements Authentication
 
             if ($userId) {
                 $_SESSION['user_id'] = $userId;
+                $_SESSION['firstname'] = $firstname;
+                $_SESSION['lastname'] = $lastname;
                 $_SESSION['username'] = $username;
                 $_SESSION['email'] = $this->email;
                 $_SESSION['role'] = $role;
