@@ -8,6 +8,6 @@ if (!isset($_SESSION['email'])){
 } else {
     $user = new User($_SESSION['email'], $db);
     $user->logout();
-    header('location: ../pages/dashboard.php');
+    header('location: ../pages/login.php');
     exit();
 }
