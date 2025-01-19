@@ -49,7 +49,6 @@ class User implements Authentication
             }
 
             return true;
-
         } catch (PDOException $e) {
             return 'Error: ' . $e->getMessage();
         }
@@ -66,7 +65,7 @@ class User implements Authentication
             $logInfo = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if (!$logInfo || !password_verify($password, $logInfo['password'])) {
-                header ('location: ../pages/login.hmtl');
+                header('location: ../pages/login.hmtl');
                 return false;
             } else {
                 $_SESSION['username'] = $logInfo['username'];
@@ -79,7 +78,8 @@ class User implements Authentication
         }
     }
 
-    public function getName(){
+    public function getName()
+    {
         return $this->name = $_SESSION['username'];
     }
 
@@ -98,7 +98,7 @@ class User implements Authentication
 
     public function getCourseDetails()
     {
-
+        // code here
     }
 
     public function logout()
@@ -110,21 +110,29 @@ class User implements Authentication
 
     public function isLoggedIn()
     {
-        
+        if (isset($_SESSION['email'])) {
+            return true;
+        }
     }
 
     public function isAdmin()
     {
-        
+        if ($_SESSION['role'] === 'Admin') {
+            return true;
+        }
     }
 
     public function isTeacher()
     {
-        
+        if ($_SESSION['role'] === 'Teacher') {
+            return true;
+        }
     }
 
     public function isStudent()
     {
-        
+        if ($_SESSION['role'] === 'Student') {
+            return true;
+        }
     }
 }

@@ -39,17 +39,23 @@ if (!isset($_SESSION['email'])) {
                     <li>
                         <details class="relative">
                             <summary class="hover:underline text-red-600 cursor-pointer hover:text-indigo-600" style="list-style: none;">
-                            <?php
-                            echo $username;
-                            ?>
+                                <?php
+                                echo $username;
+                                ?>
                             </summary>
                             <ul class="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg">
                                 <li><a class="block px-4 py-2 text-gray-700 hover:bg-indigo-600 hover:text-white" href="#">Edit</a></li>
                                 <li><a class="block px-4 py-2 text-gray-700 hover:bg-indigo-600 hover:text-white" href="#">
-                                    <form action="../forms/logout.php" method="post">
-                                        <input type="submit" value="Logout" class="block w-full text-left">
-                                    </form>
-                                </a></li>
+                                        <form action="../forms/logout.php" method="post">
+                                            <input type="submit" value="Logout" class="block w-full text-left">
+                                        </form>
+                                    </a>
+                                </li>
+                                <?php
+                                if ($user->isAdmin()) {
+                                    echo '<li><a class="block px-4 py-2 text-gray-700 hover:bg-indigo-600 hover:text-white" href="#">Dashboard</a></li>';
+                                }
+                                ?>
                             </ul>
                         </details>
                     </li>
@@ -57,7 +63,7 @@ if (!isset($_SESSION['email'])) {
             </div>
         </div>
 
-    <article class="overflow-hidden rounded-lg shadow transition hover:shadow-lg w-1/3">
+    <!-- <article class="overflow-hidden rounded-lg shadow transition hover:shadow-lg w-1/3">
         <img alt=""
             src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
             class="h-56 w-full object-cover" />
@@ -76,7 +82,8 @@ if (!isset($_SESSION['email'])) {
                 dignissimos. Molestias explicabo corporis voluptatem?
             </p>
         </div>
-    </article>
+    </article> -->
+    <h1 class="text-2xl">there's no course now</h1>
 </body>
 
 </html>
