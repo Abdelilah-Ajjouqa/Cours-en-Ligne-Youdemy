@@ -15,6 +15,20 @@ if (!isset($_SESSION['email'])) {
     $courses = $user->getAllCours($conn);
 
     $role = $user->getRole();
+    if ($role == 'student'){
+        echo '
+        
+        ';
+
+    } elseif ($role == 'teacher'){
+        echo '
+        
+        ';
+
+    } else{
+        // header('location : ./dashboard.php');
+        // exit();
+    }
 }
 ?>
 
@@ -25,7 +39,7 @@ if (!isset($_SESSION['email'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>Youdemy | Home</title>
+    <title>Youdemy | Dashboard-Admin</title>
 </head>
 
 <body class="bg-blue-50">
@@ -47,11 +61,11 @@ if (!isset($_SESSION['email'])) {
                                 ?>
                             </summary>
                             <ul class="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg">
-                                <!-- <li>
+                                <li>
                                     <a class="block px-4 py-2 text-gray-700 hover:bg-indigo-600 hover:text-white" href="#">
-                                        Edit
+                                        Dashboard
                                     </a>
-                                </li> -->
+                                </li>
                                 <li>
                                     <a class="block px-4 py-2 text-gray-700 hover:bg-indigo-600 hover:text-white" href="#">
                                         <form action="../forms/logout.php" method="post">
@@ -59,11 +73,6 @@ if (!isset($_SESSION['email'])) {
                                         </form>
                                     </a>
                                 </li>
-                                <?php
-                                if ($user->isAdmin()) {
-                                    echo '<li><a class="block px-4 py-2 text-gray-700 hover:bg-indigo-600 hover:text-white" href="#">Dashboard</a></li>';
-                                }
-                                ?>
                             </ul>
                         </details>
                     </li>
@@ -93,48 +102,10 @@ if (!isset($_SESSION['email'])) {
     </article> -->
 
     <?php
-    if ($role == 'student'){
-        echo "
-        <h1 class='text-2xl'>there's no course now</h1>
-        ";
-
-    } elseif ($role == 'teacher'){
-        echo '
-        
-        ';
-
-    } else{
-        header('location : ./admin.php');
-        exit();
-    }
+    
     ?>
 
-    <button onclick="courseForm()" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition duration-300">Add Course</button>
-
-    <form action="" method="post">
-        <div class="bg-white p-6 rounded-lg shadow-md max-w-md mx-auto">
-            <div class="mb-4">
-            <label for="title" class="block text-gray-700 font-bold mb-2">Course Title</label>
-            <input type="text" id="title" name="title" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600" required>
-            </div>
-            <div class="mb-4">
-            <label for="description" class="block text-gray-700 font-bold mb-2">Course Description</label>
-            <textarea id="description" name="description" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600" rows="4" required></textarea>
-            </div>
-            <div class="mb-4">
-            <label for="content" class="block text-gray-700 font-bold mb-2">Course Content (PDF or Videos)</label>
-            <input type="file" id="content" name="content" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600" accept=".pdf,video/*" required>
-            </div>
-            <div class="flex justify-end space-x-4">
-            <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition duration-300">Submit</button>
-            <button type="button" onclick="window.location.href='./home.php'" class="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700 transition duration-300">Cancel</button>
-            </div>
-        </div>
-    </form>
-
-    <script>
-
-    </script>
+    <h1 class="text-2xl">there's no course now</h1>
 </body>
 
 </html>

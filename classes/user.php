@@ -7,6 +7,7 @@ class User implements Authentication
     protected $username;
     protected $firstname;
     protected $lastname;
+    protected $role;
 
     public function __construct($email)
     {
@@ -104,12 +105,33 @@ class User implements Authentication
         return $this->email;
     }
 
+    public function getRole()
+    {
+        if ($_SESSION['role'] == 'student') {
+            $role = 'student';
+            return $this->role = $role;
+        
+        } elseif ($_SESSION['role'] == 'teacher') {
+            $role = 'teacher';
+            return $this->role = $role;
+
+        } else {
+            $role = 'admin';
+            return $this->role = $role;
+        }
+    }
+
     public function getAllCours(PDO $db)
     {
         $query = "SELECT * FROM courses";
         $stmt = $db->query($query);
         $courses = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return $courses;
+        
+        if (!empty($courses)){
+            return $courses;
+        } else {
+            echo "there's no courses for now";  
+        }
     }
 
     public function getCourseDetails()
