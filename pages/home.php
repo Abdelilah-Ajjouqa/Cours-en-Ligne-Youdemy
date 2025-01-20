@@ -2,6 +2,7 @@
 session_start();
 require '../db.php';
 require '../classes/user.php';
+require '../classes/course.php';
 
 $data = new Database;
 $conn = $data->getConnection();
@@ -12,7 +13,9 @@ if (!isset($_SESSION['email'])) {
 } else {
     $user = new User($_SESSION['email']);
     $username = $user->getUserName();
-    $courses = $user->getAllCours($conn);
+
+    $cours = new Courses;
+    $courses = $cours->getAllCours($conn);
 
     $role = $user->getRole();
 }
