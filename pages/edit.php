@@ -11,7 +11,8 @@ if (!isset($_SESSION['email'])) {
     exit();
 } else {
     $user = new User($_SESSION['email']);
-    $username = $user->getName();
+    $username = $user->getUserName();
+
 }
 ?>
 
@@ -74,24 +75,32 @@ if (!isset($_SESSION['email'])) {
             <h1 class="text-center text-2xl font-bold text-indigo-600 sm:text-3xl">Update Your Account</h1>
 
             <form method="post" action="#" class="mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8">
-                <!-- <p class="text-center text-lg font-medium">Sign in to your account</p> -->
 
                 <div>
-                    <label for="email" class="sr-only">Email</label>
+                    <label for="firstname" class="sr-only">First Name</label>
 
                     <div class="relative">
-                        <input type="email" name="email" class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
-                            placeholder="Enter email" />
-
-                        <span class="absolute inset-y-0 end-0 grid place-content-center px-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4 text-gray-400" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
-                            </svg>
-                        </span>
+                        <input type="text" name="firstname" class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
+                            placeholder="Enter first name" />
                     </div>
                 </div>
+
+                <div>
+                    <label for="lastname" class="sr-only">Last Name</label>
+
+                    <div class="relative">
+                        <input type="text" name="lastname" class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
+                            placeholder="Enter last name" />
+                    </div>
+                </div>
+
+                <div>
+                    <label for="username" class="sr-only">Username</label>
+
+                    <div class="relative">
+                        <input type="text" name="username" class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
+                            placeholder="Enter username" />
+                    </div><br>
 
                 <div>
                     <label for="password" class="sr-only">Password</label>
@@ -110,17 +119,12 @@ if (!isset($_SESSION['email'])) {
                             </svg>
                         </span>
                     </div>
-                </div>
+                </div><br>
 
                 <button type="submit"
                     class="block w-full rounded-lg bg-indigo-600 px-5 py-3 text-sm font-medium text-white">
-                    Sign in
+                    Done
                 </button>
-
-                <p class="text-center text-sm text-gray-500">
-                    No account?
-                    <a class="underline text-blue-500" href="./register.html">Sign up</a>
-                </p>
             </form>
         </div>
     </div>

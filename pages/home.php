@@ -11,7 +11,7 @@ if (!isset($_SESSION['email'])) {
     exit();
 } else {
     $user = new User($_SESSION['email']);
-    $username = $user->getName();
+    $username = $user->getUserName();
 }
 ?>
 

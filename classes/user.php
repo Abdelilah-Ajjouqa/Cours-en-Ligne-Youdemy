@@ -82,7 +82,17 @@ class User implements Authentication
         }
     }
 
-    public function getName()
+    public function getFirstName ()
+    {
+        return $this->name = $_SESSION['firstname'];
+    }
+
+    public function getLastName()
+    {
+        return $this->name = $_SESSION['lastname'];
+    }
+
+    public function getUserName()
     {
         return $this->name = $_SESSION['username'];
     }
