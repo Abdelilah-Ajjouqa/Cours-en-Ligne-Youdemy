@@ -14,5 +14,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $course = new Courses($cover, $title, $description, $content);
         $course->addCourse($conn);
+
+        header("Location: ../pages/home.php");
+        exit();
     }
 }

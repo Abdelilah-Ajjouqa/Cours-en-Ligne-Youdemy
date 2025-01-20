@@ -14,7 +14,7 @@ class Courses {
         $this->content = $content;
     }
 
-    public function getAllCours(PDO $db)
+    public static function getAllCours(PDO $db)
     {
         $query = "SELECT * FROM courses";
         $stmt = $db->query($query);

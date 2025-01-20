@@ -14,9 +14,6 @@ if (!isset($_SESSION['email'])) {
     $user = new User($_SESSION['email']);
     $username = $user->getUserName();
 
-    $cours = new Courses($cover, $title, $description, $content);
-    $courses = $cours->getAllCours($conn);
-
     $role = $user->getRole();
 }
 ?>
@@ -102,21 +99,15 @@ if (!isset($_SESSION['email'])) {
         ";
     } elseif ($role == 'teacher') {
         echo '
-        
-        ';
-    } else {
-        header('location : ./admin.php');
-        exit();
-    }
-    ?>
-
-    <button onclick="courseForm()" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition duration-300">Add Course</button>
+        <h1 class="text-2xl">Welcome, Teacher!</h1>
+        <p class="text-lg">Here you can manage your courses and interact with your students.</p>
+        <button onclick="courseForm()" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition duration-300">Add Course</button>
 
     <form action="../forms/course.php" method="post" id="courseForm" class="hidden">
         <div class="bg-white p-6 rounded-lg shadow-md max-w-md mx-auto">
             <div class="mb-4">
                 <label for="cover" class="block text-gray-700 font-bold mb-2">Cover</label>
-                <input type="image" id="cover" name="cover" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600">
+                <input type="file" id="cover" name="cover" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600" accept="image/*">
             </div>
             <div class="mb-4">
                 <label for="title" class="block text-gray-700 font-bold mb-2">Course Title</label>
@@ -136,6 +127,12 @@ if (!isset($_SESSION['email'])) {
             </div>
         </div>
     </form>
+        ';
+        // header('Location: ./admin.php');
+        // header('location : ./admin.php');
+        // exit();
+    }
+    ?>
 
     <script>
         function courseForm() {
@@ -151,8 +148,9 @@ if (!isset($_SESSION['email'])) {
         document.addEventListener('DOMContentLoaded', function() {
             var form = document.getElementById('courseForm');
             form.classList.add('hidden');
-        });
+        })
     </script>
+
 </body>
 
 </html>
