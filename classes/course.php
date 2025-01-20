@@ -31,20 +31,20 @@ class Courses {
         try {
             $query = 'INSERT INTO courses (cover, title, description, content) VALUES (:cover, :title, :description, :content)';
             $stmt = $db->prepare($query);
-            $stmt->bindParam(':cover', $cover);
-            $stmt->bindParam(':title', $title);
-            $stmt->bindParam(':description', $description);
-            $stmt->bindParam(':content', $content);
+            $stmt->bindParam(':cover', $this->cover);
+            $stmt->bindParam(':title', $this->title);
+            $stmt->bindParam(':description', $this->description);
+            $stmt->bindParam(':content', $this->content);
             $stmt->execute();
     
             $courseId = $db->lastInsertId();
     
             if($courseId) {
                 $_SESSION['course_id'] = $courseId;
-                $_SESSION['cover'] = $cover;
-                $_SESSION['title'] = $title;
-                $_SESSION['description'] = $description;
-                $_SESSION['content'] = $content;
+                $_SESSION['cover'] = $this->cover;
+                $_SESSION['title'] = $this->title;
+                $_SESSION['description'] = $this->description;
+                $_SESSION['content'] = $this->content;
             }
 
             return true;
