@@ -14,7 +14,7 @@ if (!isset($_SESSION['email'])) {
     $user = new User($_SESSION['email']);
     $username = $user->getUserName();
 
-    $cours = new Courses;
+    $cours = new Courses($cover, $title, $description, $content);
     $courses = $cours->getAllCours($conn);
 
     $role = $user->getRole();

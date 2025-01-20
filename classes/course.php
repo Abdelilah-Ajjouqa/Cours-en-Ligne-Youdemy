@@ -28,16 +28,29 @@ class Courses {
     }
 
     public function addCourse(PDO $db) {
-        $query = 'INSERT INTO courses (cover, title, description, content) VALUES (:cover, :title, :description, :content)';
-        $stmt = $db->prepare($query);
-        $stmt->bindParam(':cover', $cover);
-        $stmt->bindParam(':title', $title);
-        $stmt->bindParam(':description', $description);
-        $stmt->bindParam(':content', $content);
-        $stmt->execute();
+        try {
+            $query = 'INSERT INTO courses (cover, title, description, content) VALUES (:cover, :title, :description, :content)';
+            $stmt = $db->prepare($query);
+            $stmt->bindParam(':cover', $cover);
+            $stmt->bindParam(':title', $title);
+            $stmt->bindParam(':description', $description);
+            $stmt->bindParam(':content', $content);
+            $stmt->execute();
+    
+            $courseId = $db->lastInsertId();
+    
+            if($courseId) {
+                $_SESSION['course_id'] = $courseId;
+                $_SESSION['cover'] = $cover;
+                $_SESSION['title'] = $title;
+                $_SESSION['description'] = $description;
+                $_SESSION['content'] = $content;
+            }
 
-        $courseId = $db->lastInsertId();
-
+            return true;
+        } catch (PDOException $e) {
+            return 'Error: ' . $e->getMessage();
+        }
     }
 
     public function getCourseDetails()
