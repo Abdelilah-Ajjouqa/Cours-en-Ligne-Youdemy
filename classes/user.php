@@ -4,7 +4,9 @@ require 'authentication.php';
 class User implements Authentication
 {
     protected $email;
-    protected $name;
+    protected $username;
+    protected $firstname;
+    protected $lastname;
 
     public function __construct($email)
     {
@@ -84,17 +86,17 @@ class User implements Authentication
 
     public function getFirstName ()
     {
-        return $this->name = $_SESSION['firstname'];
+        return $this->firstname = $_SESSION['firstname'];
     }
 
     public function getLastName()
     {
-        return $this->name = $_SESSION['lastname'];
+        return $this->lastname = $_SESSION['lastname'];
     }
 
     public function getUserName()
     {
-        return $this->name = $_SESSION['username'];
+        return $this->username = $_SESSION['username'];
     }
 
     public function getEmail()
