@@ -34,44 +34,44 @@ if (!isset($_SESSION['email'])) {
 <body class="bg-blue-50">
     <!-- navbar -->
     <div class="navbar flex justify-between bg-white shadow-md p-4">
-            <div class="flex-1">
-                <a class="text-2xl font-bold text-indigo-600 hover:text-2xl duration-300" href="./home.php"><i class="text-red-500">You</i>demy</a>
-            </div>
-            <div class="flex-none">
-                <ul class="flex space-x-4">
-                    <li><a class="text-gray-700 hover:text-indigo-600" href="./home.php">Home</a></li>
-                    <li><a class="text-gray-700 hover:text-indigo-600" href="#">Blog</a></li>
-                    <li><a class="text-gray-700 hover:text-indigo-600" href="#">Contact</a></li>
-                    <li>
-                        <details class="relative">
-                            <summary class="hover:underline text-red-600 cursor-pointer hover:text-indigo-600" style="list-style: none;">
-                                <?php
-                                echo $username;
-                                ?>
-                            </summary>
-                            <ul class="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg">
-                                <!-- <li>
+        <div class="flex-1">
+            <a class="text-2xl font-bold text-indigo-600 hover:text-2xl duration-300" href="./home.php"><i class="text-red-500">You</i>demy</a>
+        </div>
+        <div class="flex-none">
+            <ul class="flex space-x-4">
+                <li><a class="text-gray-700 hover:text-indigo-600" href="./home.php">Home</a></li>
+                <li><a class="text-gray-700 hover:text-indigo-600" href="#">Blog</a></li>
+                <li><a class="text-gray-700 hover:text-indigo-600" href="#">Contact</a></li>
+                <li>
+                    <details class="relative">
+                        <summary class="hover:underline text-red-600 cursor-pointer hover:text-indigo-600" style="list-style: none;">
+                            <?php
+                            echo $username;
+                            ?>
+                        </summary>
+                        <ul class="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg">
+                            <!-- <li>
                                     <a class="block px-4 py-2 text-gray-700 hover:bg-indigo-600 hover:text-white" href="#">
                                         Edit
                                     </a>
                                 </li> -->
-                                <li>
-                                    <a class="block px-4 py-2 text-gray-700 hover:bg-indigo-600 hover:text-white" href="#">
-                                        <form action="../forms/logout.php" method="post">
-                                            <input type="submit" value="Logout" class="block w-full text-left">
-                                        </form>
-                                    </a>
-                                </li>
-                                <?php
-                                if ($user->isAdmin()) {
-                                    echo '<li><a class="block px-4 py-2 text-gray-700 hover:bg-indigo-600 hover:text-white" href="#">Dashboard</a></li>';
-                                }
-                                ?>
-                            </ul>
-                        </details>
-                    </li>
-                </ul>
-            </div>
+                            <li>
+                                <a class="block px-4 py-2 text-gray-700 hover:bg-indigo-600 hover:text-white" href="#">
+                                    <form action="../forms/logout.php" method="post">
+                                        <input type="submit" value="Logout" class="block w-full text-left">
+                                    </form>
+                                </a>
+                            </li>
+                            <?php
+                            if ($user->isAdmin()) {
+                                echo '<li><a class="block px-4 py-2 text-gray-700 hover:bg-indigo-600 hover:text-white" href="#">Dashboard</a></li>';
+                            }
+                            ?>
+                        </ul>
+                    </details>
+                </li>
+            </ul>
+        </div>
     </div>
 
     <!-- <article class="overflow-hidden rounded-lg shadow transition hover:shadow-lg w-1/3 m-2">
@@ -96,17 +96,15 @@ if (!isset($_SESSION['email'])) {
     </article> -->
 
     <?php
-    if ($role == 'student'){
+    if ($role == 'student') {
         echo "
         <h1 class='text-2xl'>there's no course now</h1>
         ";
-
-    } elseif ($role == 'teacher'){
+    } elseif ($role == 'teacher') {
         echo '
         
         ';
-
-    } else{
+    } else {
         header('location : ./admin.php');
         exit();
     }
@@ -114,8 +112,12 @@ if (!isset($_SESSION['email'])) {
 
     <button onclick="courseForm()" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition duration-300">Add Course</button>
 
-    <form action="" method="post" id="courseForm" class="hidden">
+    <form action="../forms/course.php" method="post" id="courseForm" class="hidden">
         <div class="bg-white p-6 rounded-lg shadow-md max-w-md mx-auto">
+            <div class="mb-4">
+                <label for="cover" class="block text-gray-700 font-bold mb-2">Cover</label>
+                <input type="image" id="cover" name="cover" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600">
+            </div>
             <div class="mb-4">
                 <label for="title" class="block text-gray-700 font-bold mb-2">Course Title</label>
                 <input type="text" id="title" name="title" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600" required>
