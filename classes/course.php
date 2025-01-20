@@ -6,16 +6,14 @@ class Courses {
     protected $description;
     protected $content;
 
-    public function __construct($cover, $title, $description, $content)
-    {
+    public function __construct($cover, $title, $description, $content) {
         $this->cover = $cover;
         $this->title = $title;
         $this->description = $description;
         $this->content = $content;
     }
 
-    public static function getAllCours(PDO $db)
-    {
+    public static function getAllCours(PDO $db) {
         $query = "SELECT * FROM courses";
         $stmt = $db->query($query);
         $courses = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -53,8 +51,7 @@ class Courses {
         }
     }
 
-    public function getCourseDetails()
-    {
+    public function getCourseDetails(){
         // code here
     }
 }

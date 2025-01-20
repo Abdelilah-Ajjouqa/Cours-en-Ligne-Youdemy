@@ -15,8 +15,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $videoUpload = '../uploads/videos/';
 
         // check if the directories exist
-        if (!is_dir($coverUpload)) {
-            mkdir($coverUpload, 0777, true);
+        if (!is_dir($coverUpload)) { // is_dir check if the variable is a directory
+            mkdir($coverUpload, 0777, true); // mkdir creates a directory
         }
         if (!is_dir($pdfUpload)) {
             mkdir($pdfUpload, 0777, true);
@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $coverPath = $coverUpload . basename($cover['name']);
         if (move_uploaded_file($cover['tmp_name'], $coverPath)) {
-            // upload content
+            // upload cover
             $contentPath = '';
             if (strpos($content['type'], 'pdf') !== false) {
                 $contentPath = $pdfUpload . basename($content['name']);
@@ -49,6 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 } else {
                     echo $result;
                 }
+
             } else {
                 echo "Failed to upload content.";
             }
