@@ -1,6 +1,6 @@
 <?php
 session_start();
-require '../db.php';
+require './db.php';
 require '../classes/user.php';
 require '../classes/course.php';
 
@@ -8,7 +8,7 @@ $data = new Database;
 $conn = $data->getConnection();
 
 if (!isset($_SESSION['email'])) {
-    header("location: ./login.html");
+    header("location: ./autho/login.html");
     exit();
 } else {
     $user = new User($_SESSION['email']);
@@ -74,20 +74,20 @@ if (!isset($_SESSION['email'])) {
 
     <!-- admin -->
     <?php
-    header("location: ./admin.php");
+    header("location: ../admin/admin.php");
     ?>
 
     <!-- teacher -->
     <?php
     if ($role == 'teacher') {
-        header("location: ./teacher.php");
+        header("location: ../teacher/teacher.php");
     }
     ?>
 
     <!-- student -->
     <?php
     if ($role == 'student') {
-        header("location: ./courses.php");
+        header("location: ../courses/courses.php");
     }
     ?>
 

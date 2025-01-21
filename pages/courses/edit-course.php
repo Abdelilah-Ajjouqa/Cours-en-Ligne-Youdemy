@@ -1,14 +1,14 @@
 <?php
 session_start();
-require '../db.php';
-require '../classes/user.php';
-require '../classes/courses.php';
+require '../../db.php';
+require '../../classes/user.php';
+require '../../classes/courses.php';
 
 $data = new Database;
 $conn = $data->getConnection();
 
 if (!isset($_SESSION['email'])) {
-    header("location: ./login.html");
+    header("location: ../../autho/login.php");
     exit();
 } else {
     $user = new User($_SESSION['email']);
@@ -36,11 +36,11 @@ if (!isset($_SESSION['email'])) {
     <!-- navbar -->
     <div class="navbar flex justify-between bg-white shadow-md p-4">
         <div class="flex-1">
-            <a class="text-2xl font-bold text-indigo-600 hover:text-2xl duration-300" href="./home.php"><i class="text-red-500">You</i>demy</a>
+            <a class="text-2xl font-bold text-indigo-600 hover:text-2xl duration-300" href="../home.php"><i class="text-red-500">You</i>demy</a>
         </div>
         <div class="flex-none">
             <ul class="flex space-x-4">
-                <li><a class="text-gray-700 hover:text-indigo-600" href="./home.php">Home</a></li>
+                <li><a class="text-gray-700 hover:text-indigo-600" href="../home.php">Home</a></li>
                 <li><a class="text-gray-700 hover:text-indigo-600" href="#">Blog</a></li>
                 <li><a class="text-gray-700 hover:text-indigo-600" href="#">Contact</a></li>
                 <li>
@@ -53,7 +53,7 @@ if (!isset($_SESSION['email'])) {
                         <ul class="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg">
                             <li>
                                 <a class="block px-4 py-2 text-gray-700 hover:bg-indigo-600 hover:text-white" href="#">
-                                    <form action="../forms/logout.php" method="post">
+                                    <form action="../../forms/logout.php" method="post">
                                         <input type="submit" value="Logout" class="block w-full text-left">
                                     </form>
                                 </a>
@@ -90,7 +90,7 @@ if (!isset($_SESSION['email'])) {
                     </div>
                     <div class="flex justify-end space-x-4">
                         <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition duration-300">Submit</button>
-                        <a href="./teacher.php" class="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700 transition duration-300">Cancel</a>
+                        <a href="../teacher/teacher.php" class="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700 transition duration-300">Cancel</a>
                     </div>
                 </div>
             </form>

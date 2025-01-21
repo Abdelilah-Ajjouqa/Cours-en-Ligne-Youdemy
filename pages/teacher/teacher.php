@@ -1,14 +1,14 @@
 <?php
 session_start();
-require '../db.php';
-require '../classes/user.php';
-require '../classes/courses.php';
+require '../../db.php';
+require '../../classes/user.php';
+require '../../classes/courses.php';
 
 $data = new Database;
 $conn = $data->getConnection();
 
 if (!isset($_SESSION['email'])) {
-    header("location: ./login.html");
+    header("location: ../autho/login.html");
     exit();
 } else {
     $user = new User($_SESSION['email']);
@@ -34,12 +34,12 @@ if (!isset($_SESSION['email'])) {
     <!-- navbar -->
     <div class="navbar flex justify-between bg-white shadow-md p-4">
         <div class="flex-1">
-            <a class="text-2xl font-bold text-indigo-600 hover:text-2xl duration-300" href="./home.php"><i
+            <a class="text-2xl font-bold text-indigo-600 hover:text-2xl duration-300" href="../home.php"><i
                     class="text-red-500">You</i>demy</a>
         </div>
         <div class="flex-none">
             <ul class="flex space-x-4">
-                <li><a class="text-gray-700 hover:text-indigo-600" href="./home.php">Home</a></li>
+                <li><a class="text-gray-700 hover:text-indigo-600" href="../home.php">Home</a></li>
                 <li><a class="text-gray-700 hover:text-indigo-600" href="#">Blog</a></li>
                 <li><a class="text-gray-700 hover:text-indigo-600" href="#">Contact</a></li>
                 <li>
@@ -58,7 +58,7 @@ if (!isset($_SESSION['email'])) {
                                 </li> -->
                             <li>
                                 <a class="block px-4 py-2 text-gray-700 hover:bg-indigo-600 hover:text-white" href="#">
-                                    <form action="../forms/logout.php" method="post">
+                                    <form action="../../forms/logout.php" method="post">
                                         <input type="submit" value="Logout" class="block w-full text-left">
                                     </form>
                                 </a>
@@ -102,10 +102,10 @@ if (!isset($_SESSION['email'])) {
                                 <a href="<?php echo htmlspecialchars($course['content']); ?>" download class="text-blue-500 hover:underline">Download</a>
                             </td>
                             <td class="py-3 px-4">
-                                <a href="./edit-course.php" class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 transition duration-300">Edit</a>
+                                <a href="../courses/edit-course.php" class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 transition duration-300">Edit</a>
                             </td>
                             <td class="py-3 px-4">
-                                <form action="../forms/delete-course.php" method="post" onsubmit="return confirm('Are you sure you want to delete this course?');">
+                                <form action="../../forms/delete-course.php" method="post" onsubmit="return confirm('Are you sure you want to delete this course?');">
                                     <input type="hidden" name="course_id" value="<?php echo htmlspecialchars($course['course_id']); ?>">
                                     <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition duration-300">Delete</button>
                                 </form>
@@ -126,7 +126,7 @@ if (!isset($_SESSION['email'])) {
 
     <?php
     echo '
-    <form action="../forms/course.php" method="post" id="courseForm" class="hidden" enctype="multipart/form-data">
+    <form action="../../forms/course.php" method="post" id="courseForm" class="hidden" enctype="multipart/form-data">
          <div class="bg-white p-6 rounded-lg shadow-md max-w-md mx-auto">
              <div class="mb-4">
             <label for="cover" class="block text-gray-700 font-bold mb-2">Cover</label>

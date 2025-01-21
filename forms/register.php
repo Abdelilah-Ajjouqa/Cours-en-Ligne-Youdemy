@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $result = $auth->register($conn, $firstname, $lastname, $username, $password, $confirmPassword, $role);
 
         if ($result === true) {
-            header('location: ../pages/login.html');
+            header('location: ../pages/autho/login.html');
             exit();
         } else {
             echo $result;

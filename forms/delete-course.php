@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $result = $course->deleteCourse($conn);
 
         if ($result === true) {
-            header('location: ../pages/teacher.php');
+            header('location: ../pages/teacher/teacher.php');
             exit();
         } else {
             echo $result;
