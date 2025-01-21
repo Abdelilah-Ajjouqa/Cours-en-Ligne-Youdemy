@@ -13,7 +13,7 @@ class Courses {
         $this->content = $content;
     }
 
-    public static function getAllCours(PDO $db) {
+    public static function getAllCourses(PDO $db) {
         $query = "SELECT * FROM courses";
         $stmt = $db->query($query);
         $courses = $stmt->fetchAll(PDO::FETCH_ASSOC);

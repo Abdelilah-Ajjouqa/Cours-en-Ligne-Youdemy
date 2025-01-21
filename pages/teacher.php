@@ -15,6 +15,7 @@ if (!isset($_SESSION['email'])) {
     $username = $user->getUserName();
 
     $role = $user->getRole();
+    $courses = Courses::getAllCourses($conn);
 }
 ?>
 
@@ -77,8 +78,51 @@ if (!isset($_SESSION['email'])) {
     <!-- main content -->
     <button onclick="courseForm()"
         class="bg-blue-500 text-white text-3xl py-3 px-3 rounded-full fixed bottom-4 right-4 w-16 h-16 flex items-center justify-center">+</button>
-    <h1 class="text-2xl">Welcome, Teacher!</h1>
-    <p class="text-lg">Here you can manage your courses and interact with your students.</p>
+    <div class="container mx-auto mt-8">
+        <h1 class="text-4xl font-bold text-center text-indigo-600 mb-4">Welcome, Teacher!</h1>
+        <p class="text-lg text-center text-gray-700 mb-8">Here you can manage your courses and interact with your students.</p>
+
+        <div class="overflow-x-auto">
+            <table class="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
+                <thead class="bg-indigo-600 text-white">
+                    <tr>
+                        <th class="py-3 px-4">Title</th>
+                        <th class="py-3 px-4">Description</th>
+                        <th class="py-3 px-4">Content</th>
+                        <th class="py-3 px-4">Edit</th>
+                        <th class="py-3 px-4">Delete</th>
+                    </tr>
+                </thead>
+                <tbody class="text-gray-700">
+                    <?php foreach ($courses as $course): ?>
+                        <tr class="border-b">
+                            <td class="py-3 px-4"><?php echo htmlspecialchars($course['title']); ?></td>
+                            <td class="py-3 px-4"><?php echo htmlspecialchars($course['description']); ?></td>
+                            <td class="py-3 px-4">
+                                <a href="<?php echo htmlspecialchars($course['content']); ?>" download class="text-blue-500 hover:underline">Download</a>
+                            </td>
+                            <td class="py-3 px-4">
+                                <a href="#" class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 transition duration-300">Edit</a>
+                            </td>
+                            <td class="py-3 px-4">
+                                <form action="delete_course.php" method="post" onsubmit="return confirm('Are you sure you want to delete this course?');">
+                                    <input type="hidden" name="id" >
+                                    <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition duration-300">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+
+
+
+
 
     <?php
     echo '
@@ -108,7 +152,6 @@ if (!isset($_SESSION['email'])) {
     </form>
 ';
     ?>
-
 
     <script>
         function courseForm() {
