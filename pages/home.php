@@ -1,8 +1,8 @@
 <?php
 session_start();
-require './db.php';
+require '../db.php';
 require '../classes/user.php';
-require '../classes/course.php';
+require '../classes/courses.php';
 
 $data = new Database;
 $conn = $data->getConnection();
@@ -74,20 +74,20 @@ if (!isset($_SESSION['email'])) {
 
     <!-- admin -->
     <?php
-    header("location: ../admin/admin.php");
+    header("location: ./admin/admin.php");
     ?>
 
     <!-- teacher -->
     <?php
     if ($role == 'teacher') {
-        header("location: ../teacher/teacher.php");
+        header("location: ./teacher/teacher.php");
     }
     ?>
 
     <!-- student -->
     <?php
     if ($role == 'student') {
-        header("location: ../courses/courses.php");
+        header("location: ./courses/courses.php");
     }
     ?>
 
