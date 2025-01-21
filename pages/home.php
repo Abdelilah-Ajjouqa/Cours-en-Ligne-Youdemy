@@ -71,33 +71,9 @@ if (!isset($_SESSION['email'])) {
         </div>
     </div>
 
-    <!-- <article class="overflow-hidden rounded-lg shadow transition hover:shadow-lg w-1/3 m-2">
-        <img alt=""
-            src="https://i.imgur.com/0dbDGTV.jpeg"
-            class="h-56 w-full object-cover" />
-
-        <div class="bg-white p-4 sm:p-6">
-            <time datetime="2022-10-10" class="block text-xs text-gray-500"> 10th Oct 2022 </time>
-
-            <a href="#">
-                <h3 class="mt-0.5 text-lg text-gray-900">How to position your furniture for positivity</h3>
-            </a>
-
-            <p class="mt-2 line-clamp-3 text-sm/relaxed text-gray-500">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae dolores, possimus
-                pariatur animi temporibus nesciunt praesentium dolore sed nulla ipsum eveniet corporis quidem,
-                mollitia itaque minus soluta, voluptates neque explicabo tempora nisi culpa eius atque
-                dignissimos. Molestias explicabo corporis voluptatem?
-            </p>
-        </div>
-    </article> -->
-
+    <!-- teacher -->
     <?php
-    if ($role == 'student') {
-        echo "
-        <h1 class='text-2xl'>there's no course now</h1>
-        ";
-    } elseif ($role == 'teacher') {
+    if ($role == 'teacher') {
         echo '
         <h1 class="text-2xl">Welcome, Teacher!</h1>
         <p class="text-lg">Here you can manage your courses and interact with your students.</p>
@@ -128,10 +104,12 @@ if (!isset($_SESSION['email'])) {
         </div>
     </form>
         ';
-        // header('Location: ./admin.php');
-        // header('location : ./admin.php');
-        // exit();
     }
+    ?>
+
+    <!-- student -->
+    <?php
+    
     ?>
 
     <script>
