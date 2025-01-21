@@ -106,7 +106,7 @@ if (!isset($_SESSION['email'])) {
                             </td>
                             <td class="py-3 px-4">
                                 <form action="../forms/delete-course.php" method="post" onsubmit="return confirm('Are you sure you want to delete this course?');">
-                                    <input type="hidden" name="id">
+                                    <input type="hidden" name="course_id" value="<?php echo htmlspecialchars($course['course_id']); ?>">
                                     <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition duration-300">Delete</button>
                                 </form>
                             </td>

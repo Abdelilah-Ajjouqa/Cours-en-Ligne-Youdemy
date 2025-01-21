@@ -12,8 +12,11 @@ if (!isset($_SESSION['email'])) {
 } else {
     $user = new User($_SESSION['email']);
     $username = $user->getUserName();
-    $firstname = $user->getFirstName();
-    $lastname = $user->getLastName();
+
+    $course = new Courses($conn, '', '', '', '');
+    $title = $course->getCourseTitle($conn);
+    $description = $course->getCourseDescription($conn);
+    $content = $course->getCourseContent($conn);
 }
 ?>
 
@@ -75,7 +78,7 @@ if (!isset($_SESSION['email'])) {
         <div class="mx-auto max-w-lg">
             <h1 class="text-center text-2xl font-bold text-indigo-600 sm:text-3xl">Update Your Account</h1>
 
-            <form method="post" action="#" class="mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8">
+            <form method="post" action="./teacher.php" class="mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8">
 
                 <div>
                     <label for="firstname" class="sr-only">First Name</label>

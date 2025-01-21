@@ -69,4 +69,61 @@ class Courses {
             return 'Error: ' . $e->getMessage();
         }
     }
+
+    public function updateCourse(PDO $db) {
+        try {
+            $query = 'UPDATE courses SET cover = :cover, title = :title, description = :description, content = :content WHERE course_id = :course_id';
+            $stmt = $db->prepare($query);
+            $stmt->bindParam(':cover', $this->cover);
+            $stmt->bindParam(':title', $this->title);
+            $stmt->bindParam(':description', $this->description);
+            $stmt->bindParam(':content', $this->content);
+            $stmt->bindParam(':course_id', $this->course_id);
+            $stmt->execute();
+    
+            return true;
+        } catch (PDOException $e) {
+            return 'Error: ' . $e->getMessage();
+        }
+    }
+
+    public function getCourseTitle(PDO $db) {
+        $query = 'SELECT title FROM courses WHERE course_id = :course_id';
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(':course_id', $this->course_id);
+        $stmt->execute();
+        $title = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        return $title['title'];
+    }
+
+    public function getCourseDescription(PDO $db) {
+        $query = 'SELECT description FROM courses WHERE course_id = :course_id';
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(':course_id', $this->course_id);
+        $stmt->execute();
+        $description = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        return $description['description'];
+    }
+
+    public function getCourseContent(PDO $db) {
+        $query = 'SELECT content FROM courses WHERE course_id = :course_id';
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(':course_id', $this->course_id);
+        $stmt->execute();
+        $content = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        return $content['content'];
+    }
+
+    public function getCourseCover(PDO $db) {
+        $query = 'SELECT cover FROM courses WHERE course_id = :course_id';
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(':course_id', $this->course_id);
+        $stmt->execute();
+        $cover = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        return $cover['cover'];
+    }
 }

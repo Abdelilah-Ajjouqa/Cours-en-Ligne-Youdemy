@@ -12,7 +12,7 @@ if (!isset($_SESSION['email'])) {
 } else {
     $user = new User($_SESSION['email']);
     $username = $user->getUserName();
-    $courses = $user->getAllCours($conn);
+    // $courses = $user->getAllCours($conn);
 
     $role = $user->getRole();
     if ($role == 'student'){
