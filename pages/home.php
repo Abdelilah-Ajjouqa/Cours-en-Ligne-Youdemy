@@ -29,6 +29,7 @@ if (!isset($_SESSION['email'])) {
 </head>
 
 <body class="bg-blue-50">
+
     <!-- navbar -->
     <div class="navbar flex justify-between bg-white shadow-md p-4">
         <div class="flex-1">
@@ -71,45 +72,23 @@ if (!isset($_SESSION['email'])) {
         </div>
     </div>
 
+    <!-- admin -->
+    <?php
+    header("location: ./admin.php");
+    ?>
+
     <!-- teacher -->
     <?php
     if ($role == 'teacher') {
-        echo '
-        <h1 class="text-2xl">Welcome, Teacher!</h1>
-        <p class="text-lg">Here you can manage your courses and interact with your students.</p>
-        <button onclick="courseForm()" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition duration-300">Add Course</button>
-
-    <form action="../forms/course.php" method="post" id="courseForm" class="hidden" enctype="multipart/form-data">
-        <div class="bg-white p-6 rounded-lg shadow-md max-w-md mx-auto">
-            <div class="mb-4">
-                <label for="cover" class="block text-gray-700 font-bold mb-2">Cover</label>
-                <input type="file" id="cover" name="cover" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600" accept="image/*">
-            </div>
-            <div class="mb-4">
-                <label for="title" class="block text-gray-700 font-bold mb-2">Course Title</label>
-                <input type="text" id="title" name="title" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600" required>
-            </div>
-            <div class="mb-4">
-                <label for="description" class="block text-gray-700 font-bold mb-2">Course Description</label>
-                <textarea id="description" name="description" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600" rows="4" required></textarea>
-            </div>
-            <div class="mb-4">
-                <label for="content" class="block text-gray-700 font-bold mb-2">Course Content (PDF or Videos)</label>
-                <input type="file" id="content" name="content" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600" accept=".pdf,video/*" required>
-            </div>
-            <div class="flex justify-end space-x-4">
-                <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition duration-300">Submit</button>
-                <button type="button" onclick="cancelForm()" class="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700 transition duration-300">Cancel</button>
-            </div>
-        </div>
-    </form>
-        ';
+        header("location: ./teacher.php");
     }
     ?>
 
     <!-- student -->
     <?php
-    
+    if ($role == 'student') {
+        header("location: ./courses.php");
+    }
     ?>
 
     <script>
