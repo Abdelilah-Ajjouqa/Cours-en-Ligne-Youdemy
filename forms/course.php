@@ -1,5 +1,5 @@
 <?php
-require '../classes/course.php';
+require '../classes/courses.php';
 require '../db.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $data = new Database;
                 $conn = $data->getConnection();
 
-                $course = new Courses($coverPath, $title, $description, $contentPath);
+                $course = new Courses($course_id, $coverPath, $title, $description, $contentPath);
                 $result = $course->addCourse($conn);
 
                 if ($result === true) {

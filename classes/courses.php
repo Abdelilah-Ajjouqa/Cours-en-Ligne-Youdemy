@@ -1,12 +1,14 @@
 <?php
 
 class Courses {
+    protected $course_id;
     protected $cover;
     protected $title;
     protected $description;
     protected $content;
 
-    public function __construct($cover, $title, $description, $content) {
+    public function __construct($course_id, $cover, $title, $description, $content) {
+        $this->course_id = $course_id;
         $this->cover = $cover;
         $this->title = $title;
         $this->description = $description;
@@ -52,6 +54,19 @@ class Courses {
     }
 
     public function getCourseDetails(){
-        // code here
+        
+    }
+
+    public function deleteCourse(PDO $db) {
+        try {
+            $query = 'DELETE FROM courses WHERE course_id = :course_id';
+            $stmt = $db->prepare($query);
+            $stmt->bindParam(':course_id', $this->course_id);
+            $stmt->execute();
+    
+            return true;
+        } catch (PDOException $e) {
+            return 'Error: ' . $e->getMessage();
+        }
     }
 }

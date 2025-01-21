@@ -2,7 +2,7 @@
 session_start();
 require '../db.php';
 require '../classes/user.php';
-require '../classes/course.php';
+require '../classes/courses.php';
 
 $data = new Database;
 $conn = $data->getConnection();
