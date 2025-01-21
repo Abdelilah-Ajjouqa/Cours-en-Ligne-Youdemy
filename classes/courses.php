@@ -126,4 +126,14 @@ class Courses {
         
         return $cover['cover'];
     }
+
+    public function getCourseId(PDO $db) {
+        $query = 'SELECT course_id FROM courses WHERE title = :title';
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(':title', $this->title);
+        $stmt->execute();
+        $courseId = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        return $courseId['course_id'];
+    }
 }
