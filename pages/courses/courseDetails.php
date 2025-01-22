@@ -3,6 +3,7 @@ session_start();
 require '../../db.php';
 require '../../classes/user.php';
 require '../../classes/courses.php';
+require '../../classes/enroll.php';
 
 $data = new Database;
 $conn = $data->getConnection();
@@ -14,9 +15,10 @@ if (!isset($_SESSION['email'])) {
     $course_id = $_GET['course_id'];
     $user = new User($_SESSION['email']);
     $username = $user->getUserName();
+    $user_id = $user->getUserId();
 
     $role = $user->getRole();
-    $courseDetails = Courses::getCourseDetails($conn, $course_id);	
+    $courseDetails = Courses::getCourseDetails($conn, $course_id);
 }
 ?>
 
@@ -89,10 +91,20 @@ if (!isset($_SESSION['email'])) {
                 <div class="mb-8">
                     <h2 class="text-2xl font-semibold text-indigo-700">Content</h2>
                     <div class="mt-4">
-                        <video class="w-full rounded-lg shadow-md h-[600px]" controls>
-                            <source src="../<?php echo $courseDetails['content']; ?>" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
+                        <?php
+                        $checkEnroll = enroll::checkIfEnroll($conn, $user_id, $course_id, null);
+                        
+                        if($checkEnroll) {
+                            echo '
+                            <video class="w-full rounded-lg shadow-md h-[600px]" controls>
+                                <source src='.htmlspecialchars($courseDetails["content"]).' type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            ';
+                        } else {
+                            echo "You need enroll first to see the content";
+                        }
+                        ?>
                     </div>
                 </div>
                 <div class="mb-8">
