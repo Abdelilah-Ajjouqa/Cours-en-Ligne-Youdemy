@@ -10,6 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $content = $_FILES['content']['name'];
         $tmpName = $_FILES['content']['tmp_name'];
         $type = $_FILES['content']['type'];
+        $teacher_id = $_SESSION['user_id'];
 
         // Define the upload directories
         $coverUpload = '../uploads/covers/';
@@ -42,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $data = new Database;
                 $conn = $data->getConnection();
 
-                $course = new Courses($course_id, $coverPath, $title, $description, $contentPath);
+                $course = new Courses(null, $coverPath, $title, $description, $contentPath, $teacher_id);
                 $result = $course->addCourse($conn);
 
                 if ($result === true) {

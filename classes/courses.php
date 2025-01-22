@@ -6,13 +6,15 @@ class Courses {
     protected $title;
     protected $description;
     protected $content;
+    protected $teacher_id;
 
-    public function __construct($course_id, $cover, $title, $description, $content) {
+    public function __construct($course_id, $cover, $title, $description, $content, $teacher_id) {
         $this->course_id = $course_id;
         $this->cover = $cover;
         $this->title = $title;
         $this->description = $description;
         $this->content = $content;
+        $this->teacher_id = $teacher_id;
     }
 
     public static function getAllCourses(PDO $db) {
@@ -29,12 +31,13 @@ class Courses {
 
     public function addCourse(PDO $db) {
         try {
-            $query = 'INSERT INTO courses (cover, title, description, content) VALUES (:cover, :title, :description, :content)';
+            $query = 'INSERT INTO courses (cover, title, description, content, teacher_id) VALUES (:cover, :title, :description, :content, :teacher_id)';
             $stmt = $db->prepare($query);
             $stmt->bindParam(':cover', $this->cover);
             $stmt->bindParam(':title', $this->title);
             $stmt->bindParam(':description', $this->description);
             $stmt->bindParam(':content', $this->content);
+            $stmt->bindParam(':teacher_id', $this->teacher_id);
             $stmt->execute();
     
             $courseId = $db->lastInsertId();
@@ -45,6 +48,7 @@ class Courses {
                 $_SESSION['title'] = $this->title;
                 $_SESSION['description'] = $this->description;
                 $_SESSION['content'] = $this->content;
+                $_SESSION['teacher_id'] = $this->teacher_id;
             }
 
             return true;
