@@ -1,4 +1,5 @@
 <?php
+session_start();
 require '../classes/courses.php';
 require '../db.php';
 
@@ -11,6 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $tmpName = $_FILES['content']['tmp_name'];
         $type = $_FILES['content']['type'];
         $teacher_id = $_SESSION['user_id'];
+        // var_dump($_SESSION);
 
         // Define the upload directories
         $coverUpload = '../uploads/covers/';

@@ -74,7 +74,8 @@ class User implements Authentication
             if (!$logInfo || !password_verify($password, $logInfo['password'])) {
                 header('location: ../pages/autho/login.hmtl');
                 return false;
-            } else {
+        } else {
+                $_SESSION['user_id'] = $logInfo['user_id'];
                 $_SESSION['username'] = $logInfo['username'];
                 $_SESSION['email'] = $logInfo['email'];
                 $_SESSION['role'] = $logInfo['role'];
