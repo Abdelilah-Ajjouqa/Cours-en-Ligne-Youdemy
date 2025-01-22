@@ -136,4 +136,18 @@ class Courses {
         
         return $courseId['course_id'];
     }
+
+    public static function myCourses(PDO $db, $teacher_id) {
+        $query = 'SELECT * FROM courses WHERE teacher_id = :teacher_id';
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(':teacher_id', $teacher_id);
+        $stmt->execute();
+        $courses = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        if (!empty($courses)){
+            return $courses;
+        } else {
+            echo "there's no courses for now";  
+        }
+    }
 }
