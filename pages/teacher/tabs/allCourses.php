@@ -63,11 +63,6 @@ if (!isset($_SESSION['email'])) {
                                     </form>
                                 </a>
                             </li>
-                            <?php
-                            if ($user->isAdmin()) {
-                                echo '<li><a class="block px-4 py-2 text-gray-700 hover:bg-indigo-600 hover:text-white" href="#">Dashboard</a></li>';
-                            }
-                            ?>
                         </ul>
                     </details>
                 </li>
@@ -137,7 +132,11 @@ if (!isset($_SESSION['email'])) {
                 <tbody class="text-gray-700">
                     <?php foreach ($courses as $course): ?>
                         <tr class="border-b">
-                            <td class="py-3 px-4"><?php echo htmlspecialchars($course['title']); ?></td>
+                            <td class="py-3 px-4">
+                                <a href="">
+                                    <?php echo htmlspecialchars($course['title']); ?>
+                                </a>
+                            </td>
                             <td class="py-3 px-4"><?php echo htmlspecialchars($course['description']); ?></td>
                             <td class="py-3 px-4">
                                 <a href="<?php echo htmlspecialchars($course['content']); ?>" download class="text-blue-500 hover:underline">Download</a>

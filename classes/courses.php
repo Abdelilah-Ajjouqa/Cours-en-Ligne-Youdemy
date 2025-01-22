@@ -57,8 +57,18 @@ class Courses {
         }
     }
 
-    public function getCourseDetails(){
-        
+    public function getCourseDetails(PDO $db) {
+        $query = 'SELECT * FROM courses WHERE course_id = :course_id';
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(':course_id', $this->course_id);
+        $stmt->execute();
+        $course = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!empty($course)){
+            return $course;
+        } else {
+            echo "there's no courses for now";  
+        }
     }
 
     public function deleteCourse(PDO $db) {
