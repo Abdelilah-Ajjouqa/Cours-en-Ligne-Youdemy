@@ -46,10 +46,13 @@ $courses = Courses::getAllCourses($conn);
                     Course</a>
             </div> -->
         </div>
-        <div class="grid grid-cols-3 gap-4 mt-4">
+        <div class="mt-4">
+            <input type="text" id="searchInput" placeholder="Search courses..." class="w-full px-4 py-2 border rounded-md">
+        </div>
+        <div class="grid grid-cols-3 gap-4 mt-4" id="coursesContainer">
             <?php
             foreach ($courses as $course) {
-                echo '<div class="bg-white shadow-md p-4 rounded-md">
+                echo '<div class="course-item bg-white shadow-md p-4 rounded-md">
                 <img src="../../images/' . $course['cover'] . '" alt="' . $course['title'] . '" class="w-full h-40 object-cover rounded-md">
                 <h2 class="text-lg font-bold text-gray-700 mt-2">' . $course['title'] . '</h2>
                 <p class="text-gray-500">' . $course['description'] . '</p>
@@ -58,6 +61,23 @@ $courses = Courses::getAllCourses($conn);
             }
             ?>
         </div>
+    </div>
+
+    <script>
+        document.getElementById('searchInput').addEventListener('input', function() {
+            var filter = this.value.toLowerCase();
+            var courseItems = document.querySelectorAll('.course-item');
+
+            courseItems.forEach(function(item) {
+                var title = item.querySelector('h2').textContent.toLowerCase();
+                if (title.includes(filter)) {
+                    item.style.display = '';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
