@@ -7,7 +7,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $cover = $_FILES['cover'];
         $title = $_POST['title'];
         $description = $_POST['description'];
-        $content = $_FILES['content'];
+        $content = $_FILES['content']['name'];
+        $tmpName = $_FILES['content']['tmp_name'];
+        $type = $_FILES['content']['type'];
 
         // Define the upload directories
         $coverUpload = '../uploads/covers/';
@@ -29,14 +31,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (move_uploaded_file($cover['tmp_name'], $coverPath)) {
             // upload cover
             $contentPath = '';
-            if (strpos($content['type'], 'pdf') !== false) {
-                $contentPath = $pdfUpload . basename($content['name']);
-            } elseif (strpos($content['type'], 'video') !== false) {
-                $contentPath = $videoUpload . basename($content['name']);
+            if (strpos($type, 'pdf') !== false) {
+                $contentPath = $pdfUpload . basename($content);
+            } elseif (strpos($type, 'video') !== false) {
+                $contentPath = $videoUpload . basename($content);
             }
 
             // move the content to the upload directory
-            if ($contentPath && move_uploaded_file($content['tmp_name'], $contentPath)) {
+            if ($contentPath && move_uploaded_file($tmpName, $contentPath)) {
                 $data = new Database;
                 $conn = $data->getConnection();
 
