@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         $result = $auth->login($conn, $password);
 
         if ($result){
-            header('location: ../pages/home.php');
+            header('location: ../pages/courses/allCourses.php');
             exit();
         } else {
             echo "Invalid email or password";

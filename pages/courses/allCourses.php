@@ -1,11 +1,21 @@
 <?php
+session_start();
 require '../../db.php';
+require '../../classes/user.php';
 require '../../classes/courses.php';
 
 $data = new Database;
 $conn = $data->getConnection();
 
+
 $courses = Courses::getAllCourses($conn);
+
+if (isset($_SESSION['email'])) {
+    $user = new User($_SESSION['email']);
+    $role = $user->getRole();
+
+    $username = $user->getUserName();
+}
 ?>
 
 <!DOCTYPE html>
@@ -30,6 +40,34 @@ $courses = Courses::getAllCourses($conn);
                 <li><a class="text-gray-700 hover:text-indigo-600" href="./home.php">Home</a></li>
                 <li><a class="text-gray-700 hover:text-indigo-600" href="#">Courses</a></li>
                 <li><a class="text-gray-700 hover:text-indigo-600" href="#">Contact</a></li>
+                <li>
+                    <details class="relative">
+                        <summary class="hover:underline text-red-600 cursor-pointer hover:text-indigo-600"
+                            style="list-style: none;">
+                            <?php
+                            if(isset($_SESSION['email'])){
+                                echo $username;
+                            } else {
+                                echo "Guest";
+                            }
+                            ?>
+                        </summary>
+                        <ul class="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg">
+                            <!-- <li>
+                                    <a class="block px-4 py-2 text-gray-700 hover:bg-indigo-600 hover:text-white" href="#">
+                                        Edit
+                                    </a>
+                                </li> -->
+                            <li>
+                                <a class="block px-4 py-2 text-gray-700 hover:bg-indigo-600 hover:text-white" href="#">
+                                    <form action="../../forms/logout.php" method="post">
+                                        <input type="submit" value="Logout" class="block w-full text-left">
+                                    </form>
+                                </a>
+                            </li>
+                        </ul>
+                    </details>
+                </li>
             </ul>
         </div>
     </div>
