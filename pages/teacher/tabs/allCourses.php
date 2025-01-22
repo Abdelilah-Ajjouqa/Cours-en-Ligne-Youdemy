@@ -100,7 +100,7 @@ if (!isset($_SESSION['email'])) {
                     </a>
 
                     <a
-                        href="#"
+                        href=""
                         class="shrink-0 border-b-2 border-sky-500 px-1 pb-4 text-sm font-medium text-sky-600">
                         All Course
                     </a>
@@ -133,7 +133,7 @@ if (!isset($_SESSION['email'])) {
                     <?php foreach ($courses as $course): ?>
                         <tr class="border-b">
                             <td class="py-3 px-4">
-                                <a href="">
+                                <a href="../../courses/courseDetails.php?course_id=<?php echo htmlspecialchars($course['course_id']); ?>">
                                     <?php echo htmlspecialchars($course['title']); ?>
                                 </a>
                             </td>

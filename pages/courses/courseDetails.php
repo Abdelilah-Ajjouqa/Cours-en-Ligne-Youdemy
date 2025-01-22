@@ -11,11 +11,12 @@ if (!isset($_SESSION['email'])) {
     header("location: ../autho/login.html");
     exit();
 } else {
+    $course_id = $_GET['course_id'];
     $user = new User($_SESSION['email']);
     $username = $user->getUserName();
 
     $role = $user->getRole();
-    $courseDetails = Courses::getCourseDetails($conn);
+    $courseDetails = Courses::getCourseDetails($conn, $course_id);	
 }
 ?>
 
@@ -73,32 +74,34 @@ if (!isset($_SESSION['email'])) {
     <!-- main content -->
     <div class="container mx-auto p-4">
         <div class="flex justify-center">
-            <div class="w-1/2 bg-white p-4 shadow-md rounded-md">
-                <h1 class="text-2xl font-bold text-center text-indigo-600">Course Details</h1>
-                <div class="flex justify-center">
-                    <div class="w-1/2">
-                        <img src="../../images/<?php echo $courseDetails['cover']; ?>" alt="course cover"
-                            class="w-full h-64 object-cover rounded-md">
+            <div class="w-full md:w-3/4 lg:w-2/3  bg-white p-8 shadow-2xl rounded-lg">
+                <h1 class="text-4xl font-bold text-center text-indigo-700 mb-8">Course Details</h1>
+                <div class="mb-8 flex justify-between">
+                    <div>
+                        <h2 class="text-2xl font-semibold text-indigo-700">Title</h2>
+                        <p class="text-gray-800 mt-2 text-lg"><?php echo $courseDetails['title']; ?></p>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl font-semibold text-indigo-700">Teacher</h2>
+                        <p class="text-gray-800 mt-2 text-lg"><?php echo $courseDetails['username']; ?></p>
                     </div>
                 </div>
-                <div class="mt-4">
-                    <h2 class="text-lg font-bold text-indigo-600">Title</h2>
-                    <p class="text-gray-700"><?php echo $courseDetails['title']; ?></p>
+                <div class="mb-8">
+                    <h2 class="text-2xl font-semibold text-indigo-700">Content</h2>
+                    <div class="mt-4">
+                        <video class="w-full rounded-lg shadow-md h-[600px]" controls>
+                            <source src="../<?php echo $courseDetails['content']; ?>" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
                 </div>
-                <div class="mt-4">
-                    <h2 class="text-lg font-bold text-indigo-600">Description</h2>
-                    <p class="text-gray-700"><?php echo $courseDetails['description']; ?></p>
+                <div class="mb-8">
+                    <h2 class="text-2xl font-semibold text-indigo-700">Description</h2>
+                    <p class="text-gray-800 mt-2 text-lg"><?php echo $courseDetails['description']; ?></p>
                 </div>
-                <div class="mt-4">
-                    <h2 class="text-lg font-bold text-indigo-600">Content</h2>
-                    <p class="text-gray-700"><?php echo $courseDetails['content']; ?></p>
-                </div>
-                <div class="mt-4">
-                    <h2 class="text-lg font-bold text-indigo-600">Teacher</h2>
-                    <p class="text-gray-700"><?php echo $courseDetails['teacher_id']; ?></p>
-                </div>
-            </div>
+            </div>  
         </div>
+    </div>
     
 
 </body>
