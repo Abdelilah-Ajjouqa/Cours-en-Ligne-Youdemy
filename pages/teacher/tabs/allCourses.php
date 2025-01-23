@@ -3,6 +3,7 @@ session_start();
 require '../../../db.php';
 require '../../../classes/user.php';
 require '../../../classes/courses.php';
+require '../../../classes/categorie.php';
 
 $data = new Database;
 $conn = $data->getConnection();
@@ -16,6 +17,8 @@ if (!isset($_SESSION['email'])) {
 
     $role = $user->getRole();
     $courses = Courses::getAllCourses($conn);
+
+    $categories = categorie::getAllCategories($conn);
 }
 ?>
 
@@ -125,8 +128,6 @@ if (!isset($_SESSION['email'])) {
                         <th class="py-3 px-4">Title</th>
                         <th class="py-3 px-4">Description</th>
                         <th class="py-3 px-4">Content</th>
-                        <th class="py-3 px-4">Edit</th>
-                        <th class="py-3 px-4">Delete</th>
                     </tr>
                 </thead>
                 <tbody class="text-gray-700">
@@ -141,51 +142,47 @@ if (!isset($_SESSION['email'])) {
                             <td class="py-3 px-4">
                                 <a href="<?php echo htmlspecialchars($course['content']); ?>" download class="text-blue-500 hover:underline">Download</a>
                             </td>
-                            <td class="py-3 px-4">
-                                <a href="../../courses/edit-course.php" class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 transition duration-300">Edit</a>
-                            </td>
-                            <td class="py-3 px-4">
-                                <form action="../../../forms/delete-course.php" method="post" onsubmit="return confirm('Are you sure you want to delete this course?');">
-                                    <input type="hidden" name="course_id" value="<?php echo htmlspecialchars($course['course_id']); ?>">
-                                    <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition duration-300">Delete</button>
-                                </form>
-                            </td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>
         </div>
     </div>
-
-
-    <?php
-    echo '
     <form action="../../../forms/course.php" method="post" id="courseForm" class="hidden" enctype="multipart/form-data">
-         <div class="bg-white p-6 rounded-lg shadow-md max-w-md mx-auto">
-             <div class="mb-4">
-            <label for="cover" class="block text-gray-700 font-bold mb-2">Cover</label>
-            <input type="file" id="cover" name="cover" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600" accept="image/*">
-                 </div>
-             <div class="mb-4">
-            <label for="title" class="block text-gray-700 font-bold mb-2">Course Title</label>
-            <input type="text" id="title" name="title" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600" required>
-                 </div>
-             <div class="mb-4">
-            <label for="description" class="block text-gray-700 font-bold mb-2">Course Description</label>
-            <textarea id="description" name="description" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600" rows="4" required></textarea>
-                 </div>
-             <div class="mb-4">
-            <label for="content" class="block text-gray-700 font-bold mb-2">Course Content (PDF or Videos)</label>
-            <input type="file" id="content" name="content" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600" accept=".pdf,video/*" required>
-                 </div>
-             <div class="flex justify-end space-x-4">
+        <div class="bg-white p-6 rounded-lg shadow-md max-w-md mx-auto">
+            <div class="mb-4">
+                <label for="cover" class="block text-gray-700 font-bold mb-2">Cover</label>
+                <input type="file" id="cover" name="cover" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600" accept="image/*">
+            </div>
+            <div class="mb-4">
+                <label for="title" class="block text-gray-700 font-bold mb-2">Course Title</label>
+                <input type="text" id="title" name="title" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600" required>
+            </div>
+            <div class="mb-4">
+                <label for="description" class="block text-gray-700 font-bold mb-2">Course Description</label>
+                <textarea id="description" name="description" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600" rows="4" required></textarea>
+            </div>
+            <div class="mb-4">
+                <label for="content" class="block text-gray-700 font-bold mb-2">Course Content (PDF or Videos)</label>
+                <input type="file" id="content" name="content" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600" accept=".pdf,video/*" required>
+            </div>
+            <div class="mb-4">
+                <label for="categorie" class="block text-gray-700 font-bold mb-2">Course Category</label>
+                <select id="categorie" name="categorie_id" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600" required>
+                    <?php if($categories) { ?> 
+                        <?php foreach($categories as $category) { ?> 
+                            <option value="<?php echo $category['categorie_id'] ?>"><?php echo $category['name'] ?></option>
+                        <?php } ?>
+                    <?php } ?>
+                </select>
+            </div>
+
+            <div class="flex justify-end space-x-4">
             <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition duration-300">Submit</button>
             <button type="button" onclick="cancelForm()" class="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700 transition duration-300">Cancel</button>
-                 </div>
-             </div>
+                </div>
+            </div>
     </form>
-';
-    ?>
 
     <script>
         function courseForm() {

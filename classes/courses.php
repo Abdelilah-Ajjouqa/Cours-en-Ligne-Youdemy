@@ -7,15 +7,17 @@ class Courses
     protected $title;
     protected $description;
     protected $content;
+    protected $categorie_id;
     protected $teacher_id;
 
-    public function __construct($course_id, $cover, $title, $description, $content, $teacher_id)
+    public function __construct($course_id, $cover, $title, $description, $content, $categorie_id, $teacher_id)
     {
         $this->course_id = $course_id;
         $this->cover = $cover;
         $this->title = $title;
         $this->description = $description;
         $this->content = $content;
+        $this->categorie_id = $categorie_id;
         $this->teacher_id = $teacher_id;
     }
 
@@ -40,25 +42,27 @@ class Courses
     public function addCourse(PDO $db)
     {
         try {
-            $query = 'INSERT INTO courses (cover, title, description, content, teacher_id) VALUES (:cover, :title, :description, :content, :teacher_id)';
+            $query = 'INSERT INTO courses (cover, title, description, content, categorie_id, teacher_id) VALUES (:cover, :title, :description, :content, :categorie_id, :teacher_id)';
             $stmt = $db->prepare($query);
             $stmt->bindParam(':cover', $this->cover);
             $stmt->bindParam(':title', $this->title);
             $stmt->bindParam(':description', $this->description);
             $stmt->bindParam(':content', $this->content);
+            $stmt->bindParam(':categorie_id', $this->categorie_id);
             $stmt->bindParam(':teacher_id', $this->teacher_id);
             $stmt->execute();
 
-            $courseId = $db->lastInsertId();
+            // $courseId = $db->lastInsertId();
 
-            if ($courseId) {
-                $_SESSION['course_id'] = $courseId;
-                $_SESSION['cover'] = $this->cover;
-                $_SESSION['title'] = $this->title;
-                $_SESSION['description'] = $this->description;
-                $_SESSION['content'] = $this->content;
-                $_SESSION['teacher_id'] = $this->teacher_id;
-            }
+            // if ($courseId) {
+            //     $_SESSION['course_id'] = $courseId;
+            //     $_SESSION['cover'] = $this->cover;
+            //     $_SESSION['title'] = $this->title;
+            //     $_SESSION['description'] = $this->description;
+            //     $_SESSION['content'] = $this->content;
+            //     $_SESSION['content'] = $this->content;
+            //     $_SESSION['teacher_id'] = $this->teacher_id;
+            // }
 
             return true;
         } catch (PDOException $e) {

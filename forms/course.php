@@ -9,6 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $title = $_POST['title'];
         $description = $_POST['description'];
         $content = $_FILES['content']['name'];
+        $categorie_id = $_POST['categorie_id'];
         $tmpName = $_FILES['content']['tmp_name'];
         $type = $_FILES['content']['type'];
         $teacher_id = $_SESSION['user_id'];
@@ -45,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $data = new Database;
                 $conn = $data->getConnection();
 
-                $course = new Courses(null, $coverPath, $title, $description, $contentPath, $teacher_id);
+                $course = new Courses(null, $coverPath, $title, $description, $contentPath, $categorie_id, $teacher_id);
                 $result = $course->addCourse($conn);
 
                 if ($result === true) {
