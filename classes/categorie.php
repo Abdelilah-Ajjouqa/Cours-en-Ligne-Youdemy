@@ -1,11 +1,11 @@
 <?php 
 class categorie {
     private $categorie_id;
-    private $categorie_name;
+    private $name;
 
-    public function __construct($categorie_id, $categorie_name) {
+    public function __construct($categorie_id, $name) {
         $this->categorie_id = $categorie_id;
-        $this->categorie_name = $categorie_name;
+        $this->name = $name;
     }
 
     public function getCategorieId() {
@@ -13,7 +13,7 @@ class categorie {
     }
 
     public function getCategorieName() {
-        return $this->categorie_name;
+        return $this->name;
     }
 
     public static function getAllCategories(PDO $db) {
@@ -24,29 +24,28 @@ class categorie {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public static function getCategoryById(PDO $db, $categorie_id) {
-        $query = 'SELECT * FROM categories WHERE categorie_id = :categorie_id';
+    public static function addCategory(PDO $db, $name) {
+        $query = 'INSERT INTO categories (name) VALUES (:name)';
         $stmt = $db->prepare($query);
-        $stmt->bindParam(':categorie_id', $categorie_id);
+        $stmt->bindParam(':name', $name);
         $stmt->execute();
-
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        return true;
     }
 
-    public static function addCategory(PDO $db, $categorie_name, $categorie_description) {
-        $query = 'INSERT INTO categories (categorie_name, categorie_description) VALUES (:categorie_name, :categorie_description)';
-        $stmt = $db->prepare($query);
-        $stmt->bindParam(':categorie_name', $categorie_name);
-        $stmt->bindParam(':categorie_description', $categorie_description);
-        $stmt->execute();
-    }
-
-    public static function updateCategory(PDO $db, $categorie_id, $categorie_name, $categorie_description) {
-        $query = 'UPDATE categories SET categorie_name = :categorie_name, categorie_description = :categorie_description WHERE categorie_id = :categorie_id';
+    public static function updateCategory(PDO $db, $categorie_id, $name) {
+        $query = 'UPDATE categories SET name = :name WHERE categorie_id = :categorie_id';
         $stmt = $db->prepare($query);
         $stmt->bindParam(':categorie_id', $categorie_id);
-        $stmt->bindParam(':categorie_name', $categorie_name);
-        $stmt->bindParam(':categorie_description', $categorie_description);
+        $stmt->bindParam(':name', $name);
+        $stmt->execute();
+
+        return $stmt->rowCount();
+    }
+
+    public static function deleteCategory(PDO $db, $categorie_id) {
+        $query = 'DELETE FROM categories WHERE categorie_id = :categorie_id';
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(':categorie_id', $categorie_id);
         $stmt->execute();
 
         return $stmt->rowCount();

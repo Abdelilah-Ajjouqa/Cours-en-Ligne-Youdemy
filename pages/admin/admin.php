@@ -141,8 +141,21 @@ if (!isset($_SESSION['email'])) {
                 <div class="bg-white p-4 shadow-md rounded-md">
                     <ul>
                         <?php foreach ($categories as $category): ?>
-                            <li class="text-gray-700 py-2 border-b border-gray-200">
+                            <li class="text-gray-700 py-2 border-b border-gray-200 flex justify-between">
                                 <span class="font-semibold"><?php echo htmlspecialchars($category['name']); ?></span>
+
+                                <div>
+                                    <form action="../../forms/updateCategorie.php" method="post" class="inline">
+                                        <input type="hidden" name="id" value="<?php echo htmlspecialchars($category['categorie_id']); ?>">
+                                        <button type="submit" class="text-blue-600 hover:text-blue-800 ml-4">Update</button>
+                                    </form>
+                                    
+                                    <form action="../../forms/deleteCategorie.php" method="post" class="inline" onsubmit="return confirm('Are you sure you want to delete this category?');">
+                                        <input type="hidden" name="id" value="<?php echo htmlspecialchars($category['categorie_id']); ?>">
+                                        <button type="submit" class="text-red-600 hover:text-red-800 ml-4">Delete</button>
+                                    </form>
+                                </div>
+                                
                             </li>
                         <?php endforeach; ?>
                     </ul>
@@ -150,7 +163,7 @@ if (!isset($_SESSION['email'])) {
             </div>
         </div>
 
-        
+
 <!-- Button to open the modal -->
 <button id="openModalBtn" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-4">
     Add New Category
@@ -161,14 +174,14 @@ if (!isset($_SESSION['email'])) {
     <div class="flex items-center justify-center min-h-screen">
         <div class="bg-white p-4 shadow-md rounded-md w-1/3">
             <h2 class="text-2xl font-bold text-indigo-600 mb-4">Add New Category</h2>
-            <form action="../../forms/addCategory.php" method="post">
+            <form action="../../forms/addCategorie.php" method="post">
                 <div class="mb-4">
-                    <label for="categoryName" class="block text-gray-700 font-bold mb-2">Category Name:</label>
-                    <input type="text" id="categoryName" name="categoryName" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                    <label for="name" class="block text-gray-700 font-bold mb-2">Categorie Name:</label>
+                    <input type="text" id="name" name="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
                 </div>
                 <div class="flex items-center justify-between">
                     <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                        Add Category
+                        Add Categorie
                     </button>
                     <button type="button" id="cancelBtn" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                         Cancel
