@@ -33,11 +33,6 @@ class student
         return $this->email;
     }
 
-    public function getPassword()
-    {
-        return $this->password;
-    }
-
     public function getRole()
     {
         return $this->role;

@@ -66,8 +66,10 @@ if (!isset($_SESSION['email'])) {
                 </ul>
             </div>
     </div>
+
+    <!-- main content -->
     <div class="container mx-auto p-4">
-        <h1 class="text-2xl">Admin Dashboard</h1>
+        <h1 class="text-4xl font-bold text-center text-indigo-600 mb-4">Admin Dashboard</h1>
         <div class="grid grid-cols-3 gap-4">
             <div class="bg-white p-4 shadow-md rounded-md">
                 <h2 class="text-xl">Courses</h2>
