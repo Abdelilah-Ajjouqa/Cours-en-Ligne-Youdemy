@@ -155,7 +155,7 @@ if (!isset($_SESSION['email'])) {
                                         <button type="submit" class="text-red-600 hover:text-red-800 ml-4">Delete</button>
                                     </form>
                                 </div>
-                                
+
                             </li>
                         <?php endforeach; ?>
                     </ul>
@@ -191,6 +191,55 @@ if (!isset($_SESSION['email'])) {
         </div>
     </div>
 </div>
+
+<!-- The Update Modal -->
+<div id="updateModal" class="fixed z-10 inset-0 overflow-y-auto hidden">
+    <div class="flex items-center justify-center min-h-screen">
+        <div class="bg-white p-4 shadow-md rounded-md w-1/3">
+            <h2 class="text-2xl font-bold text-indigo-600 mb-4">Update Category</h2>
+            <form action="../../forms/updateCategorie.php" method="post">
+                <input type="hidden" id="updateCategoryId" name="categorie_id">
+                <div class="mb-4">
+                    <label for="updateName" class="block text-gray-700 font-bold mb-2">Category Name:</label>
+                    <input type="text" id="updateName" name="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                </div>
+                <div class="flex items-center justify-between">
+                    <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                        Update Category
+                    </button>
+                    <button type="button" id="cancelUpdateBtn" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                        Cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Get the update modal
+    var updateModal = document.getElementById("updateModal");
+
+    // Get the cancel button that closes the update modal
+    var cancelUpdateBtn = document.getElementById("cancelUpdateBtn");
+
+    // When the user clicks on update button, open the update modal
+    document.querySelectorAll('button[type="submit"][class*="text-blue-600"]').forEach(function(button) {
+        button.onclick = function(event) {
+            event.preventDefault();
+            var categoryId = this.previousElementSibling.value;
+            var categoryName = this.closest('li').querySelector('span.font-semibold').textContent;
+            document.getElementById("updateCategoryId").value = categoryId;
+            document.getElementById("updateName").value = categoryName;
+            updateModal.classList.remove("hidden");
+        }
+    });
+
+    // When the user clicks on cancel button, close the update modal
+    cancelUpdateBtn.onclick = function() {
+        updateModal.classList.add("hidden");
+    }
+</script>
 
 <script>
     // Get the modal
