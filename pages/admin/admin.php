@@ -35,7 +35,7 @@ if (!isset($_SESSION['email'])) {
     // var_dump($students);
 
     // get all teachers
-    $teahcers = teacher::getAllTeacher($conn);
+    $teachers = teacher::getAllTeacher($conn);
     // var_dump($teahcers);
 }
 ?>
@@ -103,23 +103,23 @@ if (!isset($_SESSION['email'])) {
                 </ul>
             </div>
             <div class="bg-white p-4 shadow-md rounded-md">
-                <h2 class="text-xl">Students</h2>
+                <h2 class="text-xl">All Teachers</h2>
                 <ul>
-                    <li class="text-gray-700">Student 1</li>
-                    <li class="text-gray-700">Student 2</li>
-                    <li class="text-gray-700">Student 3</li>
-                    <li class="text-gray-700">Student 4</li>
-                    <li class="text-gray-700">Student 5</li>
+                    <?php foreach ($teachers as $teacher): ?>
+                        <li class="text-gray-700 py-2 border-b border-gray-200">
+                            <span class="font-semibold"><?php echo htmlspecialchars($teacher['username']); ?></span>
+                        </li>
+                    <?php endforeach; ?>
                 </ul>
             </div>
             <div class="bg-white p-4 shadow-md rounded-md">
-                <h2 class="text-xl">Teachers</h2>
+                <h2 class="text-xl">All Students</h2>
                 <ul>
-                    <li class="text-gray-700">Teacher 1</li>
-                    <li class="text-gray-700">Teacher 2</li>
-                    <li class="text-gray-700">Teacher 3</li>
-                    <li class="text-gray-700">Teacher 4</li>
-                    <li class="text-gray-700">Teacher 5</li>
+                    <?php foreach ($students as $student): ?>
+                        <li class="text-gray-700 py-2 border-b border-gray-200">
+                            <span class="font-semibold"><?php echo htmlspecialchars($student['username']); ?></span>
+                        </li>
+                    <?php endforeach; ?>
                 </ul>
             </div>
         </div>
