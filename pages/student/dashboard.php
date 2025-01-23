@@ -3,22 +3,27 @@ session_start();
 require '../../db.php';
 require '../../classes/user.php';
 require '../../classes/courses.php';
-require '../../classes/enroll.php';
+require '../../classes/student.php';
 
 $data = new Database;
 $conn = $data->getConnection();
+$user_id = $_SESSION['user_id'];
 
 if (!isset($_SESSION['email'])) {
     header("location: ../autho/login.html");
     exit();
 } else {
-    $course_id = $_GET['course_id'];
-    $user_id = $_SESSION['user_id'];
     $user = new User($_SESSION['email']);
     $username = $user->getUserName();
 
     $role = $user->getRole();
     $courses = Courses::getAllCourses($conn);
+
+    if ($role != 'student') {
+        echo "You are not a student";
+        header("location: ../autho/login.html");
+        exit();
+    }
 }
 ?>
 
@@ -130,10 +135,12 @@ if (!isset($_SESSION['email'])) {
     <div class="container mx-auto p-4">
         <div class="grid grid-cols-3 gap-4 mt-4" id="coursesContainer">
             <?php
-            $checkEnroll = enroll::checkIfEnroll($conn, $user_id, $course_id, null);
-
+            $checkEnroll = student::checkIfEnroll($conn, $user_id);
+            // echo "<pre>";
+            // print_r($checkEnroll);
+            // echo "</pre>";
             if ($checkEnroll) {
-                foreach ($courses as $course) {
+                foreach ($checkEnroll as $course) {
                     echo '<div class="course-item bg-white shadow-md p-4 rounded-md">
                     <img src="../../images/' . $course['cover'] . '" alt="' . $course['title'] . '" class="w-full h-40 object-cover rounded-md">
                     <h2 class="text-lg font-bold text-gray-700 mt-2">' . $course['title'] . '</h2>

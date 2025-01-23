@@ -33,12 +33,12 @@ if (isset($_SESSION['email'])) {
     <!-- navbar -->
     <div class="navbar flex justify-between bg-white shadow-md p-4">
         <div class="flex-1">
-            <a class="text-2xl font-bold text-indigo-600 hover:text-2xl duration-300" href="./home.php"><i class="text-red-500">You</i>demy</a>
+            <a class="text-2xl font-bold text-indigo-600 hover:text-2xl duration-300" href="#"><i class="text-red-500">You</i>demy</a>
         </div>
         <div class="flex-none">
             <ul class="flex space-x-4">
-                <li><a class="text-gray-700 hover:text-indigo-600" href="./home.php">Home</a></li>
                 <li><a class="text-gray-700 hover:text-indigo-600" href="#">Courses</a></li>
+                <!-- <li><a class="text-gray-700 hover:text-indigo-600" href="#">Courses</a></li> -->
                 <li><a class="text-gray-700 hover:text-indigo-600" href="#">Contact</a></li>
                 <li>
                     <details class="relative">
