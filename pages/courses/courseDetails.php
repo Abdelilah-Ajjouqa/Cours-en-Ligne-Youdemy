@@ -92,7 +92,7 @@ if (!isset($_SESSION['email'])) {
                 <div>
                     <div class="mb-8">
                         <h2 class="text-2xl font-semibold text-indigo-700">Cover</h2>
-                        <img src="<?php echo $courseDetails['cover']; ?>" alt="Course Cover" class="w-full rounded-lg shadow-md mt-4">
+                        <img src="../<?php echo $courseDetails['cover']; ?>" alt="Course Cover" class="w-full rounded-lg shadow-md mt-4">
                     </div>
                 </div>
                 <div class="mb-8 flex justify-between">
@@ -112,15 +112,19 @@ if (!isset($_SESSION['email'])) {
                         $checkEnroll = enroll::checkIfEnroll($conn, $user_id, $course_id, null);
 
                         if ($checkEnroll) {
-                            echo '
-                            <video class="w-full rounded-lg shadow-md h-[600px]" controls>
-                                <source src=' . $courseDetails["content"] . ' type="video/mp4">
+                            echo "
+                            <video class='w-full rounded-lg shadow-md h-[600px]' controls>
+                                <source src=". $courseDetails["content"] ." type='video/mp4'>
                                 Your browser does not support the video tag.
                             </video>
-                            ';
+                            ";
                         } else {
                             echo "You need enroll first to see the content";
-                            echo '<a href="../../forms/enroll.php?course_id=' . $course_id . '" class="w-28 block bg-indigo-600 text-white px-4 py-2 rounded-md mt-2 hover:bg-indigo-700 duration-300">Enroll Now</a>';
+                            echo '
+                            <form action="../../forms/enrollConfirm.php?course_id=' . $course_id . '" method="post">
+                                <input type="submit" value="Enroll" class="w-28 block bg-indigo-600 text-white px-4 py-2 rounded-md mt-2 hover:bg-indigo-700 duration-300">
+                            </form>
+                            ';
                         }
                         ?>
                     </div>
