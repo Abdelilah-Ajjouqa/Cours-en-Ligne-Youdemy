@@ -9,8 +9,4 @@ class admin {
     public function getAdminId() {
         return $this->admin_id;
     }
-
-    public function active(){
-        
-    }
 }
