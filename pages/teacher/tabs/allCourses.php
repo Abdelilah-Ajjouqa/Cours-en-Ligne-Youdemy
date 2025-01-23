@@ -148,6 +148,7 @@ if (!isset($_SESSION['email'])) {
             </table>
         </div>
     </div>
+    
     <form action="../../../forms/course.php" method="post" id="courseForm" class="hidden" enctype="multipart/form-data">
         <div class="bg-white p-6 rounded-lg shadow-md max-w-md mx-auto">
             <div class="mb-4">

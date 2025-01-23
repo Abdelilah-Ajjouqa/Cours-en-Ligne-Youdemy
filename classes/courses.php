@@ -52,18 +52,6 @@ class Courses
             $stmt->bindParam(':teacher_id', $this->teacher_id);
             $stmt->execute();
 
-            // $courseId = $db->lastInsertId();
-
-            // if ($courseId) {
-            //     $_SESSION['course_id'] = $courseId;
-            //     $_SESSION['cover'] = $this->cover;
-            //     $_SESSION['title'] = $this->title;
-            //     $_SESSION['description'] = $this->description;
-            //     $_SESSION['content'] = $this->content;
-            //     $_SESSION['content'] = $this->content;
-            //     $_SESSION['teacher_id'] = $this->teacher_id;
-            // }
-
             return true;
         } catch (PDOException $e) {
             return 'Error: ' . $e->getMessage();

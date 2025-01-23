@@ -3,6 +3,7 @@ session_start();
 require '../../db.php';
 require '../../classes/user.php';
 require '../../classes/courses.php';
+require '../../classes/categorie.php';
 
 $data = new Database;
 $conn = $data->getConnection();
@@ -16,6 +17,7 @@ if (!isset($_SESSION['email'])) {
 
     $role = $user->getRole();
     $courses = Courses::getAllCourses($conn);
+    $categories = categorie::getAllCategories($conn);
 }
 ?>
 
@@ -126,9 +128,7 @@ if (!isset($_SESSION['email'])) {
         </div>
     </div>
 
-    <?php
-    echo '
-    <form action="../../forms/course.php" method="post" id="courseForm" class="hidden" enctype="multipart/form-data">
+    <form action="../../../forms/course.php" method="post" id="courseForm" class="hidden" enctype="multipart/form-data">
         <div class="bg-white p-6 rounded-lg shadow-md max-w-md mx-auto">
             <div class="mb-4">
                 <label for="cover" class="block text-gray-700 font-bold mb-2">Cover</label>
@@ -148,12 +148,12 @@ if (!isset($_SESSION['email'])) {
             </div>
             <div class="mb-4">
                 <label for="categorie" class="block text-gray-700 font-bold mb-2">Course Category</label>
-                <select id="categorie" name="categorie" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600" required>
-                    <option value="programming">Programming</option>
-                    <option value="design">Design</option>
-                    <option value="marketing">Marketing</option>
-                    <option value="business">Business</option>
-                    <option value="photography">Photography</option>
+                <select id="categorie" name="categorie_id" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600" required>
+                    <?php if($categories) { ?> 
+                        <?php foreach($categories as $category) { ?> 
+                            <option value="<?php echo $category['categorie_id'] ?>"><?php echo $category['name'] ?></option>
+                        <?php } ?>
+                    <?php } ?>
                 </select>
             </div>
 
@@ -163,8 +163,6 @@ if (!isset($_SESSION['email'])) {
                 </div>
             </div>
     </form>
-';
-    ?>
 
     <script>
         function courseForm() {
