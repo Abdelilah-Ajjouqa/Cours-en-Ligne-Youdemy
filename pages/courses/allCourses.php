@@ -65,7 +65,7 @@ if (isset($_SESSION['email'])) {
                                 } elseif ($role == 'student') {
                                     echo '<a class="block px-4 py-2 text-gray-700 hover:bg-indigo-600 hover:text-white" href="../student/dashboard.php">Dashboard</a>';
                                 } elseif ($role == 'admin') {
-                                    echo '<a class="block px-4 py-2 text-gray-700 hover:bg-indigo-600 hover:text-white" href="../admin/dashboard.php">Dashboard</a>';
+                                    header('location: ../admin/admin.php');
                                 }
                                 ?>
                             </li>

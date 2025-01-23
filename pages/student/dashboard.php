@@ -92,10 +92,6 @@ if (!isset($_SESSION['email'])) {
     <h1 class="text-4xl font-bold text-center text-indigo-600 mb-4">Here You Are <?php echo $username ?></h1>
     <p class="text-lg text-center text-gray-700 mb-8">Here you can follow your courses</p>
 
-    <!-- btn for form -->
-    <button onclick="courseForm()"
-        class="bg-blue-500 text-white text-3xl py-3 px-3 rounded-full fixed bottom-4 right-4 w-16 h-16 flex items-center justify-center">+</button>
-
     <!-- tab components -->
     <div class="flex justify-center">
         <div class="sm:hidden">
