@@ -6,7 +6,7 @@ class admin {
         $this->admin_id = $admin_id;
     }
 
-    public function getAdminId() {
-        return $this->admin_id;
-    }
+    // public function getAdminId() {
+    //     return $this->admin_id;
+    // }
 }

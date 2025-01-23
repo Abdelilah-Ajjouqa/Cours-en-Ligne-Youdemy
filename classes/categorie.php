@@ -8,13 +8,13 @@ class categorie {
         $this->name = $name;
     }
 
-    public function getCategorieId() {
-        return $this->categorie_id;
-    }
+    // public function getCategorieId() {
+    //     return $this->categorie_id;
+    // }
 
-    public function getCategorieName() {
-        return $this->name;
-    }
+    // public function getCategorieName() {
+    //     return $this->name;
+    // }
 
     public static function getAllCategories(PDO $db) {
         $query = 'SELECT * FROM categories';

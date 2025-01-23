@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $data = new Database;
         $conn = $data->getConnection();
 
-        $course = new Courses($courseId, '', '', '', '', '');
+        $course = new Courses($courseId, '', '', '', '', '', '');
         $result = $course->deleteCourse($conn);
 
         if ($result === true) {
