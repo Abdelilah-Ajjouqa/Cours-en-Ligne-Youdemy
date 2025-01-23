@@ -13,20 +13,20 @@ class enroll
         $this->enrollment_id = $enrollment_id;
     }
 
-    public function getUserId()
-    {
-        return $this->student_id;
-    }
+    // public function getUserId()
+    // {
+    //     return $this->student_id;
+    // }
 
-    public function getCourseId()
-    {
-        return $this->course_id;
-    }
+    // public function getCourseId()
+    // {
+    //     return $this->course_id;
+    // }
 
-    public function getEnrollId()
-    {
-        return $this->enrollment_id;
-    }
+    // public function getEnrollId()
+    // {
+    //     return $this->enrollment_id;
+    // }
 
     public static function checkIfEnroll(PDO $db ,$student_id, $course_id)
     {

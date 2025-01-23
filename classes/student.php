@@ -18,30 +18,30 @@ class student
         $this->enrollment_id = $enrollment_id;
     }
 
-    public function getUserId()
-    {
-        return $this->student_id;
-    }
+    // public function getUserId()
+    // {
+    //     return $this->student_id;
+    // }
 
-    public function getUserName()
-    {
-        return $this->username;
-    }
+    // public function getUserName()
+    // {
+    //     return $this->username;
+    // }
 
-    public function getEmail()
-    {
-        return $this->email;
-    }
+    // public function getEmail()
+    // {
+    //     return $this->email;
+    // }
 
-    public function getRole()
-    {
-        return $this->role;
-    }
+    // public function getRole()
+    // {
+    //     return $this->role;
+    // }
 
-    public function getEnrollId()
-    {
-        return $this->enrollment_id;
-    }
+    // public function getEnrollId()
+    // {
+    //     return $this->enrollment_id;
+    // }
 
     public static function checkIfEnroll(PDO $db, $student_id)
     {
