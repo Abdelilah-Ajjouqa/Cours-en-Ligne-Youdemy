@@ -88,17 +88,17 @@ class User implements Authentication
 
     public function getFirstName ()
     {
-        return $this->firstname = $_SESSION['firstname'];
+        return $this->firstname;
     }
 
     public function getLastName()
     {
-        return $this->lastname = $_SESSION['lastname'];
+        return $this->lastname;
     }
 
     public function getUserName()
     {
-        return $this->username = $_SESSION['username'];
+        return $this->username;
     }
 
     public function getEmail()
