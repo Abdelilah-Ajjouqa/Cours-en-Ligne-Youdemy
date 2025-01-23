@@ -114,7 +114,7 @@ if (!isset($_SESSION['email'])) {
                         if ($checkEnroll) {
                             echo "
                             <video class='w-full rounded-lg shadow-md h-[600px]' controls>
-                                <source src=". $courseDetails["content"] ." type='video/mp4'>
+                                <source src='../{$courseDetails["content"]}' type='video/mp4'>
                                 Your browser does not support the video tag.
                             </video>
                             ";
