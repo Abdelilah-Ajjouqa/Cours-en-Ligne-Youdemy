@@ -63,11 +63,6 @@ if (!isset($_SESSION['email'])) {
                                     </form>
                                 </a>
                             </li>
-                            <?php
-                            if ($user->isAdmin()) {
-                                echo '<li><a class="block px-4 py-2 text-gray-700 hover:bg-indigo-600 hover:text-white" href="#">Dashboard</a></li>';
-                            }
-                            ?>
                         </ul>
                     </details>
                 </li>
@@ -105,7 +100,7 @@ if (!isset($_SESSION['email'])) {
                     </a>
 
                     <a
-                        href="#"
+                        href="./allCourses.php"
                         class="shrink-0 border-b-2 border-transparent px-1 pb-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">
                         All Course
                     </a>
@@ -135,24 +130,33 @@ if (!isset($_SESSION['email'])) {
                     </tr>
                 </thead>
                 <tbody class="text-gray-700">
-                    <?php foreach ($courses as $course): ?>
-                        <tr class="border-b">
-                            <td class="py-3 px-4"><?php echo htmlspecialchars($course['title']); ?></td>
-                            <td class="py-3 px-4"><?php echo htmlspecialchars($course['description']); ?></td>
-                            <td class="py-3 px-4">
-                                <a href="<?php echo htmlspecialchars($course['content']); ?>" download class="text-blue-500 hover:underline">Download</a>
-                            </td>
-                            <td class="py-3 px-4">
-                                <a href="../courses/edit-course.php" class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 transition duration-300">Edit</a>
-                            </td>
-                            <td class="py-3 px-4">
-                                <form action="../../forms/delete-course.php" method="post" onsubmit="return confirm('Are you sure you want to delete this course?');">
-                                    <input type="hidden" name="course_id" value="<?php echo htmlspecialchars($course['course_id']); ?>">
-                                    <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition duration-300">Delete</button>
-                                </form>
+                    <?php if($courses) { ?>
+                        <?php foreach ($courses as $course): ?>
+                            <tr class="border-b">
+                                <td class="py-3 px-4"><?php echo htmlspecialchars($course['title']); ?></td>
+                                <td class="py-3 px-4"><?php echo htmlspecialchars($course['description']); ?></td>
+                                <td class="py-3 px-4">
+                                    <a href="<?php echo htmlspecialchars($course['content']); ?>" download class="text-blue-500 hover:underline">Download</a>
+                                </td>
+                                <td class="py-3 px-4">
+                                    <a href="../courses/edit-course.php" class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 transition duration-300">Edit</a>
+                                </td>
+                                <td class="py-3 px-4">
+                                    <form action="../../forms/delete-course.php" method="post" onsubmit="return confirm('Are you sure you want to delete this course?');">
+                                        <input type="hidden" name="course_id" value="<?php echo htmlspecialchars($course['course_id']); ?>">
+                                        <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition duration-300">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <?php endforeach ?>
+                    <?php } else { ?>
+                        <tr class="text-center">
+                            <td>
+                                <span>There's no courses for now</span>
                             </td>
                         </tr>
-                    <?php endforeach; ?>
+                    <?php } ?>
+
                 </tbody>
             </table>
         </div>

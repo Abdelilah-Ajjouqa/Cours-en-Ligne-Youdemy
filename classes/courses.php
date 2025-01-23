@@ -179,8 +179,6 @@ class Courses
 
         if (!empty($courses)) {
             return $courses;
-        } else {
-            echo "there's no courses for now";
         }
     }
 }
