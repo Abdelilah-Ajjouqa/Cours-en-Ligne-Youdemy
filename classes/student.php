@@ -59,4 +59,13 @@ class student
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public static function getAllStudents(PDO $db)
+    {
+        $query = 'SELECT * FROM users WHERE role = "student"';
+        $stmt = $db->prepare($query);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

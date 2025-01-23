@@ -3,6 +3,9 @@ session_start();
 require '../../db.php';
 require '../../classes/user.php';
 require '../../classes/courses.php';
+require '../../classes/student.php';
+require '../../classes/teacher.php';
+
 
 $data = new Database;
 $conn = $data->getConnection();
@@ -11,11 +14,29 @@ if (!isset($_SESSION['email'])) {
     header("location: ../autho/login.html");
     exit();
 } else {
+    $role = $_SESSION['role'];
+    if ($role != 'admin') {
+        header("location: ../courses/allCourses.php");
+        exit();
+    }
+
+    // get user details
     $user = new User($_SESSION['email']);
     $username = $user->getUserName();
-    // $courses = $user->getAllCours($conn);
-
     $role = $user->getRole();
+    // var_dump($user);
+
+    // get all courses
+    $course = Courses::getAllCourses($conn);
+    // var_dump($course);
+
+    // get all students
+    $students = student::getAllStudents($conn);
+    // var_dump($students);
+
+    // get all teachers
+    $teahcers = teacher::getAllTeacher($conn);
+    // var_dump($teahcers);
 }
 ?>
 
