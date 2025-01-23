@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $result = $course->addCourse($conn);
 
                 if ($result === true) {
-                    header('location: ../pages/home.php');
+                    header('location: ../pages/index.php');
                     exit();
                 } else {
                     echo $result;
