@@ -45,7 +45,7 @@ if (isset($_SESSION['email'])) {
                         <summary class="hover:underline text-red-600 cursor-pointer hover:text-indigo-600"
                             style="list-style: none;">
                             <?php
-                            if(isset($_SESSION['email'])){
+                            if (isset($_SESSION['email'])) {
                                 echo $username;
                             } else {
                                 echo "Guest";
@@ -58,6 +58,17 @@ if (isset($_SESSION['email'])) {
                                         Edit
                                     </a>
                                 </li> -->
+                            <li>
+                                <?php
+                                if ($role == 'teacher') {
+                                    echo '<a class="block px-4 py-2 text-gray-700 hover:bg-indigo-600 hover:text-white" href="../teacher/dashboard.php">Dashboard</a>';
+                                } elseif ($role == 'student') {
+                                    echo '<a class="block px-4 py-2 text-gray-700 hover:bg-indigo-600 hover:text-white" href="../student/dashboard.php">Dashboard</a>';
+                                } elseif ($role == 'admin') {
+                                    echo '<a class="block px-4 py-2 text-gray-700 hover:bg-indigo-600 hover:text-white" href="../admin/dashboard.php">Dashboard</a>';
+                                }
+                                ?>
+                            </li>
                             <li>
                                 <a class="block px-4 py-2 text-gray-700 hover:bg-indigo-600 hover:text-white" href="#">
                                     <form action="../../forms/logout.php" method="post">

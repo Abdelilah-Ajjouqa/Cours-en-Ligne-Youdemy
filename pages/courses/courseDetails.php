@@ -60,6 +60,17 @@ if (!isset($_SESSION['email'])) {
                                     </a>
                                 </li> -->
                             <li>
+                                <?php
+                                if ($role == 'teacher') {
+                                    echo '<a class="block px-4 py-2 text-gray-700 hover:bg-indigo-600 hover:text-white" href="../teacher/dashboard.php">Dashboard</a>';
+                                } elseif ($role == 'student') {
+                                    echo '<a class="block px-4 py-2 text-gray-700 hover:bg-indigo-600 hover:text-white" href="../student/dashboard.php">Dashboard</a>';
+                                } elseif ($role == 'admin') {
+                                    echo '<a class="block px-4 py-2 text-gray-700 hover:bg-indigo-600 hover:text-white" href="../admin/dashboard.php">Dashboard</a>';
+                                }
+                                ?>
+                            </li>
+                            <li>
                                 <a class="block px-4 py-2 text-gray-700 hover:bg-indigo-600 hover:text-white" href="#">
                                     <form action="../../forms/logout.php" method="post">
                                         <input type="submit" value="Logout" class="block w-full text-left">
@@ -78,6 +89,12 @@ if (!isset($_SESSION['email'])) {
         <div class="flex justify-center">
             <div class="w-full md:w-3/4 lg:w-2/3  bg-white p-8 shadow-2xl rounded-lg">
                 <h1 class="text-4xl font-bold text-center text-indigo-700 mb-8">Course Details</h1>
+                <div>
+                    <div class="mb-8">
+                        <h2 class="text-2xl font-semibold text-indigo-700">Cover</h2>
+                        <img src="<?php echo $courseDetails['cover']; ?>" alt="Course Cover" class="w-full rounded-lg shadow-md mt-4">
+                    </div>
+                </div>
                 <div class="mb-8 flex justify-between">
                     <div>
                         <h2 class="text-2xl font-semibold text-indigo-700">Title</h2>
@@ -93,17 +110,17 @@ if (!isset($_SESSION['email'])) {
                     <div class="mt-4">
                         <?php
                         $checkEnroll = enroll::checkIfEnroll($conn, $user_id, $course_id, null);
-                        
-                        if($checkEnroll) {
+
+                        if ($checkEnroll) {
                             echo '
                             <video class="w-full rounded-lg shadow-md h-[600px]" controls>
-                                <source src='.$courseDetails["content"].' type="video/mp4">
+                                <source src=' . $courseDetails["content"] . ' type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
                             ';
                         } else {
                             echo "You need enroll first to see the content";
-                            echo '<a href="../../forms/enroll.php?course_id='.$course_id.'" class="w-28 block bg-indigo-600 text-white px-4 py-2 rounded-md mt-2 hover:bg-indigo-700 duration-300">Enroll Now</a>';
+                            echo '<a href="../../forms/enroll.php?course_id=' . $course_id . '" class="w-28 block bg-indigo-600 text-white px-4 py-2 rounded-md mt-2 hover:bg-indigo-700 duration-300">Enroll Now</a>';
                         }
                         ?>
                     </div>
@@ -112,10 +129,10 @@ if (!isset($_SESSION['email'])) {
                     <h2 class="text-2xl font-semibold text-indigo-700">Description</h2>
                     <p class="text-gray-800 mt-2 text-lg"><?php echo $courseDetails['description']; ?></p>
                 </div>
-            </div>  
+            </div>
         </div>
     </div>
-    
+
 
 </body>
 

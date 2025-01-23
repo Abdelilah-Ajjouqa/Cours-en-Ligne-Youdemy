@@ -34,12 +34,12 @@ if (!isset($_SESSION['email'])) {
     <!-- navbar -->
     <div class="navbar flex justify-between bg-white shadow-md p-4">
         <div class="flex-1">
-            <a class="text-2xl font-bold text-indigo-600 hover:text-2xl duration-300" href="../../home.php"><i
+            <a class="text-2xl font-bold text-indigo-600 hover:text-2xl duration-300" href="../../index.php"><i
                     class="text-red-500">You</i>demy</a>
         </div>
         <div class="flex-none">
             <ul class="flex space-x-4">
-                <li><a class="text-gray-700 hover:text-indigo-600" href="../../home.php">Home</a></li>
+                <li><a class="text-gray-700 hover:text-indigo-600" href="../../index.php">Home</a></li>
                 <li><a class="text-gray-700 hover:text-indigo-600" href="#">Blog</a></li>
                 <li><a class="text-gray-700 hover:text-indigo-600" href="#">Contact</a></li>
                 <li>
@@ -98,7 +98,7 @@ if (!isset($_SESSION['email'])) {
             <div class="border-b border-gray-200">
                 <nav class="-mb-px flex gap-6" aria-label="Tabs">
                     <a
-                        href="../teacher.php"
+                        href="../dashboard.php"
                         class="shrink-0 border-b-2 border-transparent px-1 pb-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
                         aria-current="page">
                         My Dashboard
