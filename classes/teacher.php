@@ -18,29 +18,29 @@ class teacher {
         $this->categorie_id = $categorie_id;
     }
 
-    public function getTeacherId() {
-        return $this->teacher_id;
-    }
+    // public function getTeacherId() {
+    //     return $this->teacher_id;
+    // }
 
-    public function getUserName() {
-        return $this->username;
-    }
+    // public function getUserName() {
+    //     return $this->username;
+    // }
 
-    public function getEmail() {
-        return $this->email;
-    }
+    // public function getEmail() {
+    //     return $this->email;
+    // }
 
-    public function getRole() {
-        return $this->role;
-    }
+    // public function getRole() {
+    //     return $this->role;
+    // }
 
-    public function getCourseId() {
-        return $this->course_id;
-    }
+    // public function getCourseId() {
+    //     return $this->course_id;
+    // }
 
-    public function getCategorieId() {
-        return $this->categorie_id;
-    }
+    // public function getCategorieId() {
+    //     return $this->categorie_id;
+    // }
 
     public static function checkIfTeacher(PDO $db, $teacher_id) {
         $query = '
