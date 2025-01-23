@@ -10,7 +10,7 @@ interface Authentication
 
     public function isLoggedIn();
 
-    public function isAdmin();
+    // public function isAdmin();
 
     public function isTeacher();
 

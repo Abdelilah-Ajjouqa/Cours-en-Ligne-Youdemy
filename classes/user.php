@@ -86,25 +86,25 @@ class User implements Authentication
         }
     }
 
-    public function getFirstName ()
-    {
-        return $this->firstname;
-    }
+    // public function getFirstName ()
+    // {
+    //     return $this->firstname;
+    // }
 
-    public function getLastName()
-    {
-        return $this->lastname;
-    }
+    // public function getLastName()
+    // {
+    //     return $this->lastname;
+    // }
 
     public function getUserName()
     {
         return $this->username;
     }
 
-    public function getEmail()
-    {
-        return $this->email;
-    }
+    // public function getEmail()
+    // {
+    //     return $this->email;
+    // }
 
     public function getRole()
     {
@@ -136,12 +136,12 @@ class User implements Authentication
         }
     }
 
-    public function isAdmin()
-    {
-        if ($_SESSION['role'] === 'Admin') {
-            return true;
-        }
-    }
+    // public function isAdmin()
+    // {
+    //     if ($_SESSION['role'] === 'Admin') {
+    //         return true;
+    //     }
+    // }
 
     public function isTeacher()
     {
