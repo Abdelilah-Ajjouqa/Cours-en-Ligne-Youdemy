@@ -21,7 +21,12 @@ class Courses
 
     public static function getAllCourses(PDO $db)
     {
-        $query = "SELECT * FROM courses";
+        $query = "SELECT * FROM courses c
+        JOIN categories cat
+        ON c.categorie_id = cat.categorie_id
+        JOIN users u
+        ON c.teacher_id = u.user_id";
+        
         $stmt = $db->query($query);
         $courses = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
