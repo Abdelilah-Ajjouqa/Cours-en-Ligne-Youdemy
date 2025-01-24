@@ -13,9 +13,13 @@ $courses = Courses::getAllCourses($conn);
 if (isset($_SESSION['email'])) {
     $user = new User($_SESSION['email']);
     $role = $user->getRole();
-
+    
+    $user->setUsername($_SESSION['username']);
     $username = $user->getUserName();
+} else {
+    $username = 'Guest';
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -45,11 +49,7 @@ if (isset($_SESSION['email'])) {
                         <summary class="hover:underline text-red-600 cursor-pointer hover:text-indigo-600"
                             style="list-style: none;">
                             <?php
-                            if (isset($_SESSION['email'])) {
-                                echo $username;
-                            } else {
-                                echo "Guest";
-                            }
+                            echo $username;
                             ?>
                         </summary>
                         <ul class="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg">

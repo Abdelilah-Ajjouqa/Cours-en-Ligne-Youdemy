@@ -23,10 +23,10 @@ class student
     //     return $this->student_id;
     // }
 
-    // public function getUserName()
-    // {
-    //     return $this->username;
-    // }
+    public function getUserName()
+    {
+        return $this->username;
+    }
 
     // public function getEmail()
     // {

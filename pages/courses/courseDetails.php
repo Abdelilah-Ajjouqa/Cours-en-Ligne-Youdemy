@@ -14,6 +14,8 @@ if (!isset($_SESSION['email'])) {
 } else {
     $course_id = $_GET['course_id'];
     $user = new User($_SESSION['email']);
+
+    $user->setUsername($_SESSION['username']);
     $username = $user->getUserName();
     $user_id = $user->getUserId();
 

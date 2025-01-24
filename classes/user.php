@@ -161,4 +161,9 @@ class User implements Authentication
     {
         return isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
     }
+
+
+    public function setUsername($username){
+        $this->username = $username;
+    }
 }
