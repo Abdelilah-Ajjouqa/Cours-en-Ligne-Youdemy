@@ -50,6 +50,13 @@
                         Continue Without Register
                     </a>
                 </div>
+                <div class="mt-8 flex flex-wrap justify-center gap-4">
+                    <a
+                        class="text-sm font-medium text-indigo-600 hover:text-indigo-700"
+                        href="./autho/login.html">
+                        or Login
+                    </a>
+                </div>
             </div>
         </div>
     </section>
